@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react';
-import Calendar from 'react-calendar';
+import CalendarSection from '@/components/CalendarSection';
 import 'react-calendar/dist/Calendar.css';
 
 export default function HomePage() {
@@ -58,9 +58,7 @@ export default function HomePage() {
         {/* Right Column: Calendar */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-green-700">📅 Lịch Giáo xứ</h2>
-          <div className="bg-white shadow-md rounded-lg p-4">
-            <Calendar onChange={setDate} value={date} locale="vi-VN" />
-          </div>
+          <CalendarSection />
           <p className="text-sm text-gray-600">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
         </div>
       </div>

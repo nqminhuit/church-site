@@ -24,3 +24,10 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Highlight event dates with green background and padding */
+.react-calendar__tile.event-date {
+  background: #34d399 !important; /* Tailwind emerald-400 */
+  color: white !important;
+  border-radius: 8px;
+}
