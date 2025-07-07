@@ -58,7 +58,7 @@ export default function HomePage() {
         {/* Right Column: Calendar */}
         <div className="space-y-4">
           <h2 className="text-xl font-semibold text-green-700">📅 Lịch Giáo xứ</h2>
-          <CalendarSection />
+          <CalendarSection date={date} onChange={setDate}/>
           <p className="text-sm text-gray-600">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
         </div>
       </div>

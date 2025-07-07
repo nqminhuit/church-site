@@ -10,15 +10,13 @@ const events = [
   { date: new Date(2025, 6, 20), title: "Chầu Thánh Thể" },
 ];
 
-export default function CalendarSection() {
-  const [value, setValue] = useState(new Date());
-
+export default function CalendarSection({date, onChange}) {
   return (
     <div>
       <Calendar
         locale="vi-VN"
-        onChange={setValue}
-        value={value}
+        onChange={onChange}
+        value={date}
         tileClassName={({ date, view }) => {
           if (view === 'month') {
             const isEvent = events.some(
