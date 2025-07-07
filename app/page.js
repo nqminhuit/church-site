@@ -12,15 +12,23 @@ export default function HomePage() {
       {/* Banner on top across full width */}
       <section className="text-center py-16 bg-green-100 rounded-lg">
         <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
-        <p className="mt-4 text-lg text-gray-700">
-          "Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta." (Is 40,31)
-        </p>
+        <p className="mt-4 text-lg text-gray-700">"Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta." (Is 40,31)</p>
       </section>
 
       {/* Grid: Left - Content, Right - Calendar */}
       <div className="grid md:grid-cols-3 gap-8">
         {/* Left Column: Main content */}
         <div className="md:col-span-2 space-y-10">
+          <section>
+            <h2 className="text-xl font-semibold text-green-700 mb-2">🌟 Giới thiệu</h2>
+            <p className="text-gray-700 leading-relaxed">Giáo xứ Hy Vọng được thành lập năm XXXX, là nơi quy tụ cộng đoàn tín hữu cùng nhau cầu nguyện, chia sẻ đức tin và phục vụ tha nhân. Chúng tôi luôn chào đón mọi người đến tham dự Thánh lễ và các hoạt động mục vụ.</p>
+          </section>
+          <section className="bg-green-50 border-l-4 border-green-600 p-4 rounded-md shadow-sm">
+            <h2 className="text-xl font-semibold text-green-800 mb-2">📖 Lời Chúa hôm nay</h2>
+            <p className="text-gray-700 italic">"Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em." (Ga 15,12)</p>
+            <p className="text-sm text-gray-500 mt-2">Chúa Nhật XIV Thường Niên - Năm B</p>
+          </section>
+
           <section className="grid sm:grid-cols-2 gap-6">
             <a href="/phan-cong-doc-sach" className="block bg-white shadow-md rounded-lg p-6 hover:bg-green-50">
               <h2 className="text-xl font-semibold text-green-800 mb-2">📖 Phân công đọc sách</h2>
@@ -57,7 +65,6 @@ export default function HomePage() {
 
         {/* Right Column: Calendar */}
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-green-700">📅 Lịch Giáo xứ</h2>
           <CalendarSection date={date} onChange={setDate}/>
           <p className="text-sm text-gray-600">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
         </div>
