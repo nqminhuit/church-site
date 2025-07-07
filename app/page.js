@@ -52,7 +52,24 @@ export default function HomePage() {
               <li>🔔 <strong>20/07:</strong> Chầu Thánh Thể lúc 19h00.</li>
             </ul>
           </section>
-
+          <section className="mt-12">
+            <h2 className="text-xl font-bold text-green-800 mb-4">📸 Hình ảnh mới</h2>
+            <div className="flex flex-wrap gap-4">
+              {[
+                '/photos/event1.compressed.jpg',
+                '/photos/event2.compressed.jpg',
+                '/photos/event3.compressed.jpg',
+              ].map((src, idx) => (
+                <img
+                  key={idx}
+                  src={src}
+                  alt={`Ảnh ${idx + 1}`}
+                  className="w-58 h-40 object-cover rounded shadow"
+                />
+              ))}
+            </div>
+            <a href="/hinh-anh" className="block mt-2 text-green-700 underline text-sm">Xem tất cả »</a>
+          </section>
           <section>
             <h2 className="text-xl font-semibold text-green-700 mb-2">⛪ Giờ lễ trong tuần</h2>
             <ul className="list-disc list-inside text-gray-700 space-y-1">
