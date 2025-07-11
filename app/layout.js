@@ -17,9 +17,11 @@ export default function RootLayout({ children }) {
               <Link href="/" className="text-xl font-bold no-underline hover:opacity-70">⛪ Giáo xứ Hy Vọng</Link>
             </div>
             <nav className="space-x-4 text-sm">
+              <a href="/" className="hover:underline">Trang chủ</a>
               <a href="/lich-su-giao-xu" className="hover:underline">Lịch sử Giáo Xứ</a>
+              <a href="/thong-bao" className="hover:underline">Thông báo</a>
               <a href="/phan-cong-doc-sach" className="hover:underline">Phân công đọc sách</a>
-              <a href="/gio-le" className="hover:underline">Giờ lễ</a>
+              <a href="/cac-hoat-dong" className="hover:underline">Các hoạt động</a>
               <a href="/lien-he" className="hover:underline">Liên hệ</a>
             </nav>
           </div>
