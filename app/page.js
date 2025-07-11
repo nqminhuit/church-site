@@ -12,7 +12,7 @@ export default function HomePage() {
       {/* Banner on top across full width */}
       <section className="text-center py-16 bg-green-100 rounded-lg">
         <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
-        <p className="mt-4 text-lg text-gray-700">"Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta." (Is 40,31)</p>
+        <p className="mt-4 text-lg text-gray-700">&quot;Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta.&quot; (Is 40,31)</p>
       </section>
 
       {/* Grid: Left - Content, Right - Calendar */}
@@ -25,7 +25,7 @@ export default function HomePage() {
           </section>
           <section className="bg-green-50 border-l-4 border-green-600 p-4 rounded-md shadow-sm">
             <h2 className="text-xl font-semibold text-green-800 mb-2">📖 Lời Chúa hôm nay</h2>
-            <p className="text-gray-700 italic">"Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em." (Ga 15,12)</p>
+            <p className="text-gray-700 italic">&quot;Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.&quot; (Ga 15,12)</p>
             <p className="text-sm text-gray-500 mt-2">Chúa Nhật XIV Thường Niên - Năm B</p>
           </section>
 
