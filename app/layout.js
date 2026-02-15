@@ -22,11 +22,11 @@ export default function RootLayout({ children }) {
               <Link href="/" className="hover:underline">Trang chủ</Link>
               <Link href="/lich-su-giao-xu" className="hover:underline">Lịch sử Giáo Xứ</Link>
               <Link href="/thong-bao" className="hover:underline">Thông báo</Link>
-              <div className="relative group">
+              <div className="relative group pb-2">
                 <button className="hover:underline cursor-pointer">Các hoạt động</button>
-                <div className="absolute left-0 top-full mt-1 hidden group-hover:block bg-white shadow-lg rounded-md border z-50">
-                  <Link href="/cac-hoat-dong" className="block px-4 py-2 text-gray-800 hover:bg-green-100">Tổng quan</Link>
-                  <Link href="/cac-hoat-dong/phan-cong-doc-sach" className="block px-4 py-2 text-gray-800 hover:bg-green-100">Phân công đọc sách</Link>
+                <div className="absolute left-0 top-full hidden group-hover:block hover:block bg-white shadow-lg rounded-md border z-50 min-w-[200px]">
+                  <Link href="/cac-hoat-dong" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">🏠 Tổng quan</Link>
+                  <Link href="/cac-hoat-dong/phan-cong-doc-sach" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">📖 Phân công đọc sách</Link>
                 </div>
               </div>
               <Link href="/lien-he" className="hover:underline">Liên hệ</Link>
