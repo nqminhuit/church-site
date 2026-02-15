@@ -11,9 +11,19 @@ export default function HomePage() {
   return (
     <div className="space-y-12">
       {/* Banner on top across full width */}
-      <section className="text-center py-16 bg-green-100 rounded-lg">
-        <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
-        <p className="mt-4 text-lg text-gray-700">&quot;Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta.&quot; (Is 40,31)</p>
+      <section className="text-center py-20 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden">
+        <div className="max-w-4xl mx-auto">
+          <Image
+            src="/photos/event1.compressed.jpg"
+            alt="Giáo xứ Hy Vọng community gathering"
+            width={800}
+            height={400}
+            className="rounded-lg shadow-lg mb-6 object-cover"
+          />
+          <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
+          <p className="mt-4 text-lg text-gray-700">&quot;Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta.&quot; (Is 40,31)</p>
+          <a href="/gio-le" className="mt-6 inline-block bg-green-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition">Tham Gia Thánh Lễ Chúa Nhật</a>
+        </div>
       </section>
 
       {/* Grid: Left - Content, Right - Calendar */}
@@ -24,7 +34,7 @@ export default function HomePage() {
             <h2 className="text-xl font-semibold text-green-700 mb-2">🌟 Giới thiệu</h2>
             <p className="text-gray-700 leading-relaxed">Giáo xứ Hy Vọng được thành lập năm XXXX, là nơi quy tụ cộng đoàn tín hữu cùng nhau cầu nguyện, chia sẻ đức tin và phục vụ tha nhân. Chúng tôi luôn chào đón mọi người đến tham dự Thánh lễ và các hoạt động mục vụ.</p>
           </section>
-          <section className="bg-green-50 border-l-4 border-green-600 p-4 rounded-md shadow-sm">
+          <section className="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-600 p-4 rounded-md shadow-sm">
             <h2 className="text-xl font-semibold text-green-800 mb-2">📖 Lời Chúa hôm nay</h2>
             <p className="text-gray-700 italic">&quot;Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.&quot; (Ga 15,12)</p>
             <p className="text-sm text-gray-500 mt-2">Chúa Nhật XIV Thường Niên - Năm B</p>
@@ -57,14 +67,14 @@ export default function HomePage() {
             <h2 className="text-xl font-bold text-green-800 mb-4">📸 Hình ảnh mới</h2>
             <div className="flex flex-wrap gap-4">
               {[
-                '/photos/event1.compressed.jpg',
-                '/photos/event2.compressed.jpg',
-                '/photos/event3.compressed.jpg',
-              ].map((src, idx) => (
+                { src: '/photos/event1.compressed.jpg', alt: 'Sunday Mass celebration' },
+                { src: '/photos/event2.compressed.jpg', alt: 'Youth group gathering' },
+                { src: '/photos/event3.compressed.jpg', alt: 'Community charity event' },
+              ].map(({src, alt}, idx) => (
                 <Image
                   key={idx}
                   src={src}
-                  alt={`Ảnh ${idx + 1}`}
+                  alt={alt}
                   width={232}
                   height={160}
                   className="object-cover rounded shadow"
