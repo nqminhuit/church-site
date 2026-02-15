@@ -17,14 +17,24 @@ export default function RootLayout({ children }) {
             <div className="text-xl font-bold">
               <Link href="/" className="text-xl font-bold no-underline hover:opacity-70">⛪ Giáo xứ Hy Vọng</Link>
             </div>
-            <nav className="space-x-4 text-sm">
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex space-x-4 text-sm relative">
               <Link href="/" className="hover:underline">Trang chủ</Link>
               <Link href="/lich-su-giao-xu" className="hover:underline">Lịch sử Giáo Xứ</Link>
               <Link href="/thong-bao" className="hover:underline">Thông báo</Link>
-              <Link href="/cac-hoat-dong/phan-cong-doc-sach" className="hover:underline">Phân công đọc sách</Link>
-              <Link href="/cac-hoat-dong" className="hover:underline">Các hoạt động</Link>
+              <div className="relative group">
+                <button className="hover:underline cursor-pointer">Các hoạt động</button>
+                <div className="absolute left-0 top-full mt-1 hidden group-hover:block bg-white shadow-lg rounded-md border z-50">
+                  <Link href="/cac-hoat-dong" className="block px-4 py-2 text-gray-800 hover:bg-green-100">Tổng quan</Link>
+                  <Link href="/cac-hoat-dong/phan-cong-doc-sach" className="block px-4 py-2 text-gray-800 hover:bg-green-100">Phân công đọc sách</Link>
+                </div>
+              </div>
               <Link href="/lien-he" className="hover:underline">Liên hệ</Link>
             </nav>
+            {/* Mobile Nav Placeholder - can add hamburger menu later */}
+            <div className="md:hidden">
+              <button className="text-white text-xl">☰</button>
+            </div>
           </div>
         </header>
 
