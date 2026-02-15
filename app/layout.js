@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
               <Link href="/" className="hover:underline">Trang chủ</Link>
               <Link href="/lich-su-giao-xu" className="hover:underline">Lịch sử Giáo Xứ</Link>
               <Link href="/thong-bao" className="hover:underline">Thông báo</Link>
-              <Link href="/phan-cong-doc-sach" className="hover:underline">Phân công đọc sách</Link>
+              <Link href="/cac-hoat-dong/phan-cong-doc-sach" className="hover:underline">Phân công đọc sách</Link>
               <Link href="/cac-hoat-dong" className="hover:underline">Các hoạt động</Link>
               <Link href="/lien-he" className="hover:underline">Liên hệ</Link>
             </nav>
