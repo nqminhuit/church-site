@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react';
+import Image from 'next/image';
 import CalendarSection from '@/components/CalendarSection';
 import 'react-calendar/dist/Calendar.css';
 
@@ -60,11 +61,13 @@ export default function HomePage() {
                 '/photos/event2.compressed.jpg',
                 '/photos/event3.compressed.jpg',
               ].map((src, idx) => (
-                <img
+                <Image
                   key={idx}
                   src={src}
                   alt={`Ảnh ${idx + 1}`}
-                  className="w-58 h-40 object-cover rounded shadow"
+                  width={232}
+                  height={160}
+                  className="object-cover rounded shadow"
                 />
               ))}
             </div>

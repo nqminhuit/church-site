@@ -2,12 +2,11 @@
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { useState } from 'react';
 
 const events = [
-  { date: new Date(2025, 6, 7), title: "Khai giảng lớp giáo lý" },
-  { date: new Date(2025, 6, 14), title: "Tĩnh tâm giới trẻ" },
-  { date: new Date(2025, 6, 20), title: "Chầu Thánh Thể" },
+  { date: new Date(new Date().getFullYear(), 6, 7), title: "Khai giảng lớp giáo lý" },
+  { date: new Date(new Date().getFullYear(), 6, 14), title: "Tĩnh tâm giới trẻ" },
+  { date: new Date(new Date().getFullYear(), 6, 20), title: "Chầu Thánh Thể" },
 ];
 
 export default function CalendarSection({date, onChange}) {

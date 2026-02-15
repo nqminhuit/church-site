@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Giáo xứ Hy Vọng - Website
 
-## Getting Started
+Đây là website chính thức của Giáo xứ Hy Vọng, được xây dựng bằng Next.js 15 và React 19. Website cung cấp thông tin về giáo xứ, lịch giờ lễ, thông báo, hoạt động, và hình ảnh cộng đồng.
 
-First, run the development server:
+## Mục đích
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Giới thiệu Giáo xứ Hy Vọng
+- Thông báo lịch lễ, sự kiện, và các hoạt động mục vụ
+- Chia sẻ hình ảnh và tin tức cộng đồng
+- Liên hệ và thông tin liên lạc
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Cài đặt và Chạy
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Yêu cầu
+- Node.js 18+
+- npm hoặc yarn
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Bước cài đặt
+1. Clone repository:
+   ```bash
+   git clone <repository-url>
+   cd giao-xu-hy-vong
+   ```
 
-## Learn More
+2. Cài đặt dependencies:
+   ```bash
+   npm install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Chạy server phát triển:
+   ```bash
+   npm run dev
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Mở [http://localhost:3000](http://localhost:3000) trong trình duyệt để xem website.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Cấu trúc Dự án
 
-## Deploy on Vercel
+- **app/**: Các trang Next.js (app router)
+  - `page.js`: Trang chủ
+  - `layout.js`: Layout chung
+  - Các thư mục con cho từng trang (e.g., `lien-he/page.js`)
+- **components/**: Component tái sử dụng (e.g., `CalendarSection.js`)
+- **public/**: Tài sản tĩnh (hình ảnh trong `photos/`, favicon, etc.)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Thêm và Cập nhật Nội dung
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Lịch sự kiện**: Chỉnh sửa mảng `events` trong `components/CalendarSection.js`
+- **Hình ảnh**: Thêm vào `public/photos/` và cập nhật trong `app/page.js`
+- **Thông tin**: Chỉnh sửa nội dung trong các file trang hoặc tạo trang mới dưới `app/`
+- **Thông báo**: Thêm vào phần thông báo trong `app/page.js` hoặc tạo trang `/thong-bao`
+
+## Triển khai
+
+Website được cấu hình sẵn cho Vercel:
+1. Kết nối repository với Vercel
+2. Deploy tự động khi push thay đổi
+
+### Các bước triển khai thủ công
+1. Build production:
+   ```bash
+   npm run build
+   ```
+2. Start server:
+   ```bash
+   npm start
+   ```
+
+## Công nghệ Sử dụng
+
+- **Next.js 15**: Framework React với app router
+- **React 19**: Component-based UI
+- **Tailwind CSS v4**: Styling và responsive design
+- **React Calendar**: Component calendar tương tác
+
+## Phát triển Thêm
+
+- Thêm TypeScript để type safety
+- Thiết lập testing với Jest
+- Tích hợp CMS để quản lý nội dung động
+- Thêm đa ngôn ngữ nếu cần
+
+## Đóng góp
+
+Mọi đóng góp được chào đón! Vui lòng tạo issue hoặc pull request.
