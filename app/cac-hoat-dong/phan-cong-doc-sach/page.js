@@ -6,9 +6,9 @@ export default function LectorPage() {
       {/* Breadcrumb */}
       <nav className="mb-6">
         <Link href="/" className="text-green-700 hover:underline">Trang chủ</Link>
-        <span className="mx-2 text-gray-500">></span>
+        <span className="mx-2 text-gray-500">&gt;</span>
         <Link href="/cac-hoat-dong" className="text-green-700 hover:underline">Các hoạt động</Link>
-        <span className="mx-2 text-gray-500">></span>
+        <span className="mx-2 text-gray-500">&gt;</span>
         <span className="text-gray-800">Phân công đọc sách</span>
       </nav>
 
