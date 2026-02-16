@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import BackToTop from '@/components/BackToTop';
 import './globals.css';
 
 export const metadata = {
@@ -50,12 +51,32 @@ export default function RootLayout({ children }) {
         </main>
 
         {/* Footer */}
-        <footer className="bg-green-800 text-white text-sm py-6 mt-12">
-          <div className="max-w-6xl mx-auto px-4 text-center">
-            <p>© {new Date().getFullYear()} Giáo xứ Hy Vọng. Mọi quyền được bảo lưu.</p>
-            <p className="mt-1">Địa chỉ: 123 Đường Đức Tin, Quận Bình An, TP.HCM</p>
-            <p className="mt-1">Email: <a href="mailto:lienhe@gxhyvong.vn" className="underline">lienhe@gxhyvong.vn</a></p>
+        <footer className="bg-gradient-to-t from-green-900 to-green-800 text-white text-sm py-8 mt-12 border-t border-green-600">
+          <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6">
+            <div>
+              <p>&copy; {new Date().getFullYear()} Giáo xứ Hy Vọng. Mọi quyền được bảo lưu.</p>
+              <p className="mt-2 flex items-start">
+                <span className="mr-2">🏠</span>
+                <span>Địa chỉ: 123 Đường Hy Vọng, Phường Bình An, Quận 2, TP. Thủ Đức</span>
+              </p>
+            </div>
+            <div className="text-left md:text-right">
+              <p className="mt-2 flex items-center justify-start md:justify-end">
+                <span className="mr-2">📧</span>
+                <a href="mailto:giaoxuhyvong@gmail.com" className="underline hover:text-green-200">Email: giaoxuhyvong@gmail.com</a>
+              </p>
+              <p className="mt-2 flex items-center justify-start md:justify-end">
+                <span className="mr-2">📱</span>
+                <a href="tel:+842812345678" className="underline hover:text-green-200">Điện thoại: (+84) 28 1234 5678</a>
+              </p>
+              <p className="mt-2 flex items-center justify-start md:justify-end">
+                <span className="mr-2">🔗</span>
+                <Link href="/lien-he" className="underline hover:text-green-200">Xem chi tiết liên hệ</Link>
+              </p>
+              {/* Add social if available: <a href="https://facebook.com/gxhyvong" className="underline">Facebook</a> */}
+            </div>
           </div>
+          <BackToTop />
         </footer>
       </body>
     </html>
