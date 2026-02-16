@@ -29,11 +29,22 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: SSH to server
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.HOMELAB_HOST }}
-          port: ${{ secrets.HOMELAB_PORT }}
-          username: ${{ secrets.HOMELAB_USER }}
-          key: ${{ secrets.HOMELAB_SSH_KEY }}
-          script: echo "hello world"
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.HOMELAB_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -p ${{ secrets.HOMELAB_PORT }} -H ${{ secrets.HOMELAB_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Ensure remote directory exists
+        run: |
+          ssh -p ${{ secrets.HOMELAB_PORT }} \
+            ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }} \
+            "mkdir -p ${{ secrets.HOMELAB_HYVONG_PATH }}"
+
+      - name: Deploy
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p ${{ secrets.HOMELAB_PORT }}" \
+            out/ \
+            ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }}:${{ secrets.HOMELAB_HYVONG_PATH }}/
