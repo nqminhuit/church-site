@@ -8,16 +8,20 @@ import 'react-calendar/dist/Calendar.css';
 export default function HomePage() {
   const [date, setDate] = useState(new Date());
   const [announcements, setAnnouncements] = useState([]);
+  const [images, setImages] = useState([]);
 
-  const MINIO_INDEX_URL = 'https://s3-api.prud.uk/web/church/hyvong/index.json';
+  const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
+  const MINIO_INDEX_URL = MINIO_BASE + '/index.json';
 
   useEffect(() => {
     fetch(MINIO_INDEX_URL)
       .then(res => res.json())
       .then(data => {
-        // Assume data is array of {title, date, summary, slug}
-        const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
-        setAnnouncements(sorted);
+        const sortedAnnouncements = data.announcements ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3) : [];
+        setAnnouncements(sortedAnnouncements);
+
+        const sortedImages = data.images ? data.images.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4) : [];
+        setImages(sortedImages);
       })
       .catch(console.error);
   }, []);
@@ -33,6 +37,7 @@ export default function HomePage() {
             width={800}
             height={400}
             className="rounded-lg shadow-lg mb-6 object-cover"
+            priority
           />
           <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
           <p className="mt-4 text-lg text-gray-700">&quot;Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta.&quot; (Is 40,31)</p>
@@ -78,18 +83,15 @@ export default function HomePage() {
           <section className="mt-12">
             <h2 className="text-xl font-bold text-green-800 mb-4">📸 Hình ảnh mới</h2>
             <div className="flex flex-wrap gap-4">
-              {[
-                { src: '/photos/event1.compressed.jpg', alt: 'Sunday Mass celebration' },
-                { src: '/photos/event2.compressed.jpg', alt: 'Youth group gathering' },
-                { src: '/photos/event3.compressed.jpg', alt: 'Community charity event' },
-              ].map(({src, alt}, idx) => (
+              {images.map((item, idx) => (
                 <Image
                   key={idx}
-                  src={src}
-                  alt={alt}
+                  src={MINIO_BASE + '/media/' + item.src}
+                  alt={item.alt}
                   width={232}
                   height={160}
                   className="object-cover rounded shadow"
+                  priority={idx === 0}
                 />
               ))}
             </div>

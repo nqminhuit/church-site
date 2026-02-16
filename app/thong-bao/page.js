@@ -15,7 +15,7 @@ export default function AnnouncementsPage() {
       .then(res => res.json())
       .then(data => {
         // Assume data is array of {title, date, summary, image, slug}
-        setAnnouncements(data.sort((a, b) => new Date(b.date) - new Date(a.date)));
+        setAnnouncements(data.announcements ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)) : []);
       })
       .catch(console.error);
   }, []);
