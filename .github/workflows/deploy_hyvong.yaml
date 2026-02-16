@@ -29,17 +29,11 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.HOMELAB_SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.HOMELAB_HOST }} >> ~/.ssh/known_hosts
-
-      - name: Deploy
-        run: >
-          rsync -avz -e "ssh -i ~/.ssh/id_rsa
-          -p ${{ secrets.HOMELAB_PORT }}
-          -o StrictHostKeyChecking=no"
-          out/
-          ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }}:${{ secrets.HOMELAB_HYVONG_PATH }}
+      - name: SSH to server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOMELAB_HOST }}
+          port: ${{ secrets.HOMELAB_PORT }}
+          username: ${{ secrets.HOMELAB_USER }}
+          key: ${{ secrets.HOMELAB_SSH_KEY }}
+          script: echo "hello world"
