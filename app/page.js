@@ -22,8 +22,18 @@ export default function HomePage() {
           />
           <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
           <p className="mt-4 text-lg text-gray-700">&quot;Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta.&quot; (Is 40,31)</p>
-          <a href="/gio-le" className="mt-6 inline-block bg-green-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition">Tham Gia Thánh Lễ Chúa Nhật</a>
+          <a href="/gio-le" className="mt-6 inline-block bg-green-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition">Tham Dự Thánh Lễ</a>
         </div>
+      </section>
+
+      {/* Word of God Section - Full Width */}
+      <section className="max-w-4xl mx-auto text-center py-8 bg-gradient-to-r from-green-50 to-green-200 border border-green-300 rounded-lg shadow-lg my-8">
+        <h2 className="text-2xl font-bold text-green-900 mb-4">📖 Lời Chúa hôm nay</h2>
+        <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
+          &quot;Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.&quot;
+        </blockquote>
+        <cite className="text-sm text-gray-600 mt-2 block">(Ga 15,12)</cite>
+        <p className="text-sm text-green-700 font-semibold mt-2">Chúa Nhật XIV Thường Niên - Năm B</p>
       </section>
 
       {/* Grid: Left - Content, Right - Calendar */}
@@ -34,34 +44,28 @@ export default function HomePage() {
             <h2 className="text-xl font-semibold text-green-700 mb-2">🌟 Giới thiệu</h2>
             <p className="text-gray-700 leading-relaxed">Giáo xứ Hy Vọng được thành lập năm XXXX, là nơi quy tụ cộng đoàn tín hữu cùng nhau cầu nguyện, chia sẻ đức tin và phục vụ tha nhân. Chúng tôi luôn chào đón mọi người đến tham dự Thánh lễ và các hoạt động mục vụ.</p>
           </section>
-          <section className="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-600 p-4 rounded-md shadow-sm">
-            <h2 className="text-xl font-semibold text-green-800 mb-2">📖 Lời Chúa hôm nay</h2>
-            <p className="text-gray-700 italic">&quot;Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.&quot; (Ga 15,12)</p>
-            <p className="text-sm text-gray-500 mt-2">Chúa Nhật XIV Thường Niên - Năm B</p>
-          </section>
 
-          <section className="grid sm:grid-cols-2 gap-6">
-            <a href="/phan-cong-doc-sach" className="block bg-white shadow-md rounded-lg p-6 hover:bg-green-50">
-              <h2 className="text-xl font-semibold text-green-800 mb-2">📖 Phân công đọc sách</h2>
-              <p className="text-gray-600 text-sm">Lịch phân công cho các lễ sắp tới.</p>
-            </a>
-            <a href="/gio-le" className="block bg-white shadow-md rounded-lg p-6 hover:bg-green-50">
-              <h2 className="text-xl font-semibold text-green-800 mb-2">🕊️ Giờ lễ</h2>
-              <p className="text-gray-600 text-sm">Xem lịch giờ lễ trong tuần.</p>
-            </a>
-            <a href="/lien-he" className="block bg-white shadow-md rounded-lg p-6 hover:bg-green-50 col-span-2 sm:col-span-1">
-              <h2 className="text-xl font-semibold text-green-800 mb-2">📞 Liên hệ</h2>
-              <p className="text-gray-600 text-sm">Thông tin liên lạc với giáo xứ.</p>
-            </a>
-          </section>
 
-          <section>
-            <h2 className="text-xl font-semibold text-green-700 mb-2">📢 Thông báo</h2>
-            <ul className="space-y-1 text-gray-700">
-              <li>🔔 <strong>07/07:</strong> Khai giảng lớp giáo lý Thêm Sức.</li>
-              <li>🔔 <strong>14/07:</strong> Tĩnh tâm giới trẻ mùa hè.</li>
-              <li>🔔 <strong>20/07:</strong> Chầu Thánh Thể lúc 19h00.</li>
+
+          <section className="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-600 p-6 rounded-lg shadow-sm">
+            <h2 className="text-xl font-bold text-green-800 mb-3 flex items-center">
+              <span className="mr-2">📢</span> Thông báo
+            </h2>
+            <ul className="space-y-2 text-gray-700">
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">🔔</span>
+                <span><strong>07/07:</strong> Khai giảng lớp giáo lý Thêm Sức.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">🔔</span>
+                <span><strong>14/07:</strong> Tĩnh tâm giới trẻ mùa hè.</span>
+              </li>
+              <li className="flex items-start">
+                <span className="text-green-600 mr-2">🔔</span>
+                <span><strong>20/07:</strong> Chầu Thánh Thể lúc 19h00.</span>
+              </li>
             </ul>
+            <a href="/thong-bao" className="inline-block mt-4 text-green-700 underline font-medium hover:text-green-800">Xem tất cả &raquo;</a>
           </section>
           <section className="mt-12">
             <h2 className="text-xl font-bold text-green-800 mb-4">📸 Hình ảnh mới</h2>
