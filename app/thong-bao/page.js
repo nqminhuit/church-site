@@ -33,7 +33,7 @@ export default function AnnouncementsPage() {
       {/* Announcements List */}
       <section className="space-y-6">
         {announcements.map((announcement, idx) => (
-          <div key={idx} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+          <div key={idx} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300">
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <Image

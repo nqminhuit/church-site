@@ -36,7 +36,7 @@ export default function ActivitiesPage() {
       {/* Activities Grid */}
       <section className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         {activities.map((activity, idx) => (
-          <div key={idx} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
+          <div key={idx} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300">
             <Image
               src={activity.image}
               alt={activity.title}
