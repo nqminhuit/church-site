@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
                   <Link href="/cac-hoat-dong" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">🏠 Tổng quan</Link>
                   <Link href="/cac-hoat-dong/phan-cong-doc-sach" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">📖 Phân công đọc sách</Link>
                   <Link href="/gio-le" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">🕊️ Giờ lễ</Link>
+                  <Link href="/cac-hoat-dong/caritas" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">❤️ Caritas Giáo xứ</Link>
                 </div>
               </div>
               <Link href="/lien-he" className="hover:underline">Liên hệ</Link>
