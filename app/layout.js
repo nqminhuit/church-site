@@ -5,6 +5,9 @@ import './globals.css';
 export const metadata = {
   title: 'Giáo xứ Hy Vọng',
   description: 'Trang thông tin Giáo xứ Hy Vọng',
+  icons: {
+    icon: {url: '/favicon.svg', type: 'image/svg+xml'},
+  }
 };
 
 export default function RootLayout({ children }) {
