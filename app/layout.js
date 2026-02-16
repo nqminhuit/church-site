@@ -30,6 +30,7 @@ export default function RootLayout({ children }) {
                 <div className="absolute left-0 top-full hidden group-hover:block hover:block bg-white shadow-lg rounded-md border z-50 min-w-[200px]">
                   <Link href="/cac-hoat-dong" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">🏠 Tổng quan</Link>
                   <Link href="/cac-hoat-dong/phan-cong-doc-sach" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">📖 Phân công đọc sách</Link>
+                  <Link href="/gio-le" className="block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition">🕊️ Giờ lễ</Link>
                 </div>
               </div>
               <Link href="/lien-he" className="hover:underline">Liên hệ</Link>
