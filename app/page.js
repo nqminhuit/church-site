@@ -1,12 +1,26 @@
 'use client'
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import CalendarSection from '@/components/CalendarSection';
 import 'react-calendar/dist/Calendar.css';
 
 export default function HomePage() {
   const [date, setDate] = useState(new Date());
+  const [announcements, setAnnouncements] = useState([]);
+
+  const MINIO_INDEX_URL = 'https://s3-api.prud.uk/web/church/hyvong/index.json';
+
+  useEffect(() => {
+    fetch(MINIO_INDEX_URL)
+      .then(res => res.json())
+      .then(data => {
+        // Assume data is array of {title, date, summary, slug}
+        const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3);
+        setAnnouncements(sorted);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className="space-y-12">
@@ -52,18 +66,12 @@ export default function HomePage() {
               <span className="mr-2">📢</span> Thông báo
             </h2>
             <ul className="space-y-2 text-gray-700">
-              <li className="flex items-start">
-                <span className="text-green-600 mr-2">🔔</span>
-                <span><strong>07/07:</strong> Khai giảng lớp giáo lý Thêm Sức.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-600 mr-2">🔔</span>
-                <span><strong>14/07:</strong> Tĩnh tâm giới trẻ mùa hè.</span>
-              </li>
-              <li className="flex items-start">
-                <span className="text-green-600 mr-2">🔔</span>
-                <span><strong>20/07:</strong> Chầu Thánh Thể lúc 19h00.</span>
-              </li>
+              {announcements.map((item, idx) => (
+                <li key={idx} className="flex items-start">
+                  <span className="text-green-600 mr-2">🔔</span>
+                  <span><strong>{new Date(item.date).toLocaleDateString('vi-VN')}:</strong> {item.summary}</span>
+                </li>
+              ))}
             </ul>
             <a href="/thong-bao" className="inline-block mt-4 text-green-700 underline font-medium hover:text-green-800">Xem tất cả &raquo;</a>
           </section>
