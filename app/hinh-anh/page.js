@@ -42,7 +42,7 @@ export default function Page() {
       {selectedImage && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center z-50" onClick={() => setSelectedImage(null)}>
           <div className="relative p-4" onClick={(e) => e.stopPropagation()}>
-            <img
+            <Image
               src={MINIO_BASE + 'media/' + selectedImage.src}
               alt={selectedImage.alt}
               className="rounded-lg"

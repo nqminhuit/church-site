@@ -63,8 +63,13 @@ Website được cấu hình sẵn cho Vercel:
    ```
 2. Start server:
    ```bash
-   npm start
+   (cd out && python -m http.server 8000)
    ```
+
+one-liner:
+``` bash
+rm -rf out/ && npm run build && (cd out && python -m http.server 8000)
+```
 
 ## Công nghệ Sử dụng
 

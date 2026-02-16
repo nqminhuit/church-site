@@ -8,10 +8,9 @@ export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);
 
   const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
-  const INDEX_URL = `${MINIO_BASE}/index.json`;
 
   useEffect(() => {
-    fetch(INDEX_URL)
+    fetch(MINIO_BASE + '/index.json')
       .then(res => res.json())
       .then(data => {
         // Assume data is array of {title, date, summary, image, slug}

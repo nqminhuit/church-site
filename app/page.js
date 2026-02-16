@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import CalendarSection from '@/components/CalendarSection';
 import 'react-calendar/dist/Calendar.css';
 
@@ -11,10 +12,9 @@ export default function HomePage() {
   const [images, setImages] = useState([]);
 
   const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
-  const MINIO_INDEX_URL = MINIO_BASE + '/index.json';
 
   useEffect(() => {
-    fetch(MINIO_INDEX_URL)
+    fetch(MINIO_BASE + '/index.json')
       .then(res => res.json())
       .then(data => {
         const sortedAnnouncements = data.announcements ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3) : [];
@@ -41,7 +41,7 @@ export default function HomePage() {
           />
           <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
           <p className="mt-4 text-lg text-gray-700">&quot;Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta.&quot; (Is 40,31)</p>
-          <a href="/gio-le" className="mt-6 inline-block bg-green-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition">Tham Dự Thánh Lễ</a>
+          <Link href="/gio-le" className="mt-6 inline-block bg-green-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition">Tham Dự Thánh Lễ</Link>
         </div>
       </section>
 
@@ -78,7 +78,7 @@ export default function HomePage() {
                 </li>
               ))}
             </ul>
-            <a href="/thong-bao" className="inline-block mt-4 text-green-700 underline font-medium hover:text-green-800">Xem tất cả &raquo;</a>
+            <Link href="/thong-bao" className="inline-block mt-4 text-green-700 underline font-medium hover:text-green-800">Xem tất cả &raquo;</Link>
           </section>
           <section className="mt-12">
             <h2 className="text-xl font-bold text-green-800 mb-4">📸 Hình ảnh mới</h2>
@@ -95,7 +95,7 @@ export default function HomePage() {
                 />
               ))}
             </div>
-            <a href="/hinh-anh" className="block mt-2 text-green-700 underline text-sm">Xem tất cả »</a>
+            <Link href="/hinh-anh" className="block mt-2 text-green-700 underline text-sm">Xem tất cả »</Link>
           </section>
           <section>
             <h2 className="text-xl font-semibold text-green-700 mb-2">⛪ Giờ lễ trong tuần</h2>
@@ -103,7 +103,7 @@ export default function HomePage() {
               <li>Chúa Nhật: 5h30, 7h00, 17h30</li>
               <li>Thứ Hai - Thứ Bảy: 5h00 sáng</li>
             </ul>
-            <a href="/gio-le" className="text-green-800 underline text-sm mt-2 inline-block">Xem chi tiết &raquo;</a>
+            <Link href="/gio-le" className="text-green-800 underline text-sm mt-2 inline-block">Xem chi tiết &raquo;</Link>
           </section>
         </div>
 

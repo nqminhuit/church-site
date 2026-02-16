@@ -1,28 +1,27 @@
-'use client'
-
-import { useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useParams } from 'next/navigation';
+import Image from 'next/image';
 
-export default function AnnouncementPage() {
-  const { slug } = useParams();
-  const [content, setContent] = useState('');
-  const [error, setError] = useState(null);
-  const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
+const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
 
-  useEffect(() => {
-    fetch(`${MINIO_BASE}/pages/${slug}.md`)
-      .then(res => {
-        if (!res.ok) throw new Error('Not found');
-        return res.text();
-      })
-      .then(setContent)
-      .catch(setError);
-  }, [slug]);
+export async function generateStaticParams() {
+  const res = await fetch(`${MINIO_BASE}/index.json?t=${Date.now()}`);
+  const data = await res.json();
+  return data.announcements.map((ann) => ({
+    slug: ann.slug,
+  }));
+}
 
-  if (error) return <div>Không tìm thấy thông báo này.</div>;
-  if (!content) return <div>Loading...</div>;
-
+export default async function AnnouncementPage({ params }) {
+  const { slug } = params;
+  const res = await fetch(`${MINIO_BASE}/pages/${slug}.md?t=${Date.now()}`);
+  if (!res.ok) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <p>Không tìm thấy thông báo này.</p>
+      </div>
+    );
+  }
+  const content = await res.text();
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <ReactMarkdown
@@ -38,7 +37,7 @@ export default function AnnouncementPage() {
           a: ({href, children}) => <a href={href} className="text-green-700 underline hover:text-green-800" target="_blank" rel="noopener noreferrer">{children}</a>,
           img: ({src, alt}) => {
             const fullSrc = src.startsWith('http') ? src : `${MINIO_BASE}/media/${src}`;
-            return <img src={fullSrc} alt={alt} className="max-w-full h-auto rounded-lg shadow-md my-4" />;
+            return <Image src={fullSrc} alt={alt} className="max-w-full h-auto rounded-lg shadow-md my-4" />;
           },
           code: ({children}) => <code className="bg-gray-100 px-1 py-0.5 rounded text-sm">{children}</code>,
           pre: ({children}) => <pre className="bg-gray-100 p-4 rounded overflow-x-auto mb-4">{children}</pre>,
