@@ -56,6 +56,43 @@ Website được cấu hình sẵn cho Vercel:
 1. Kết nối repository với Vercel
 2. Deploy tự động khi push thay đổi
 
+Caddyfile block:
+
+```conf
+church.prud.uk {
+    import security_headers
+
+    # Point to the atomic symlink (recommended for zero-downtime deploys)
+    root * /path/to/current/out
+
+    # SPA fallback – critical for Next.js client-side routing
+    # so /lich-su-giao-xu and refreshes work without 404
+    try_files {path} {path}/ /index.html
+
+    file_server
+
+    # Long-term caching for Next.js static assets
+    @assets path_regexp ^/_next/static/.*
+    header @assets {
+        Cache-Control "public, max-age=3600, immutable"
+    }
+
+    # Optional: enable if you want separate logs for this site
+    log {
+        output file /path/to/log/caddy/church-access.log
+        format console
+        level WARN
+    }
+
+    # Optional: error logging just for this site (uncomment if needed)
+    log error {
+        output file /path/to/var/log/caddy/church-error.log
+        format console
+        level ERROR
+    }
+}
+```
+
 ### Các bước triển khai thủ công
 1. Build production:
    ```bash
@@ -70,6 +107,8 @@ one-liner:
 ``` bash
 rm -rf out/ && npm run build && (cd out && python -m http.server 8000)
 ```
+
+
 
 ## Công nghệ Sử dụng
 
