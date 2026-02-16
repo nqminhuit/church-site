@@ -1,0 +1,64 @@
+{
+  "announcements": [
+    {
+      "title": "Khai giảng lớp Giáo lý tháng 7",
+      "date": "2024-07-07",
+      "summary": "Chương trình giáo lý dành cho các em thiếu nhi sẽ chính thức bắt đầu. Mời phụ huynh đăng ký.",
+      "image": "family-event.jpg",
+      "slug": "khai-giang-giao-ly"
+    },
+    {
+      "title": "Tĩnh tâm giới trẻ mùa hè",
+      "date": "2024-07-14",
+      "summary": "Các bạn trẻ hãy tham gia buổi tĩnh tâm để củng cố đức tin và gắn kết cộng đồng.",
+      "image": "event1.jpg",
+      "slug": "tinh-tam-gioi-tre"
+    },
+    {
+      "title": "Chầu Thánh Thể cầu nguyện cho hòa bình",
+      "date": "2024-07-20",
+      "summary": "Lễ chầu Thánh Thể bắt đầu từ 19h00 tại nhà thờ. Mời tất cả cộng đoàn tham dự.",
+      "image": "event2.jpg",
+      "slug": "chau-thanh-the-hoa-binh"
+    },
+    {
+      "title": "Hội trại gia đình mùa hè",
+      "date": "2024-07-25",
+      "summary": "Gia đình cùng tham gia hội trại vui vẻ với các hoạt động thể thao và cầu nguyện.",
+      "image": "event3.jpg",
+      "slug": "hoi-trai-gia-dinh"
+    }
+  ],
+  "images": [
+    {
+      "src": "galleries/gleam_00005_.jpg",
+      "alt": "Sunday Mass celebration",
+      "date": "2024-07-07"
+    },
+    {
+      "src": "galleries/gleam_00006_.jpg",
+      "alt": "Youth group gathering",
+      "date": "2024-07-14"
+    },
+    {
+      "src": "galleries/gleam_00007_.jpg",
+      "alt": "Community charity event",
+      "date": "2024-07-20"
+    },
+    {
+      "src": "galleries/gleam_00008_.jpg",
+      "alt": "Youth camp activities",
+      "date": "2024-07-22"
+    },
+    {
+      "src": "galleries/gleam_00009_.jpg",
+      "alt": "Family picnic event",
+      "date": "2024-07-25"
+    },
+    {
+      "src": "galleries/gleam_00010_.jpg",
+      "alt": "Church outreach program",
+      "date": "2024-07-30"
+    }
+  ]
+}
