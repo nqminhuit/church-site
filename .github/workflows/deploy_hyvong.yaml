@@ -1,4 +1,9 @@
 name: Deploy Hy Vong
+
+concurrency:
+  group: deploy-hyvong
+  cancel-in-progress: true
+
 on:
   push:
     branches: [main]
@@ -29,10 +34,14 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Generate timestamp
+        run: echo "TIMESTAMP=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.HOMELAB_SSH_KEY }}" > ~/.ssh/id_ed25519
+          printf "%s" "${{ secrets.HOMELAB_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 700 ~/.ssh
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -p ${{ secrets.HOMELAB_PORT }} -H ${{ secrets.HOMELAB_HOST }} >> ~/.ssh/known_hosts
 
@@ -40,11 +49,20 @@ jobs:
         run: |
           ssh -p ${{ secrets.HOMELAB_PORT }} \
             ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }} \
-            "mkdir -p ${{ secrets.HOMELAB_HYVONG_PATH }}"
+            "mkdir -p '${{ secrets.HOMELAB_HYVONG_PATH }}/${{ env.TIMESTAMP }}'"
 
       - name: Deploy
         run: |
-          rsync -avz --delete \
-            -e "ssh -p ${{ secrets.HOMELAB_PORT }}" \
+          rsync -av -e "ssh -p ${{ secrets.HOMELAB_PORT }}" \
             out/ \
-            ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }}:${{ secrets.HOMELAB_HYVONG_PATH }}/
+            ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }}:${{ secrets.HOMELAB_HYVONG_PATH }}/${{ env.TIMESTAMP }}/
+
+      - name: Create symlink to current
+        run: |
+          ssh -p ${{ secrets.HOMELAB_PORT }} ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }} \
+            "set -e; cd '${{ secrets.HOMELAB_HYVONG_PATH }}'; ln -sfn ${{ env.TIMESTAMP }}/ current"
+
+      - name: Cleanup old versions
+        run: |
+          ssh -p ${{ secrets.HOMELAB_PORT }} ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }} \
+            "set -euo pipefail; cd '${{ secrets.HOMELAB_HYVONG_PATH }}'; ls -1d */ | grep -v '^current/$' | sort -r | tail -n +11 | xargs -r rm -rf"
