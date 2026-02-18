@@ -13,7 +13,7 @@ export default function CalendarSection({date, onChange}) {
   return (
     <div>
       <Calendar
-        locale="vi-VN"
+        locale="en-US"
         onChange={onChange}
         value={date}
         tileClassName={({ date, view }) => {
@@ -21,10 +21,16 @@ export default function CalendarSection({date, onChange}) {
             const isEvent = events.some(
               (event) => event.date.toDateString() === date.toDateString()
             );
-            return isEvent ? 'event-date' : null;
+            const dayOfWeek = date.getDay();
+            if (isEvent) return 'event-date bg-red-200 text-red-800';
+            if (dayOfWeek === 0) return 'bg-red-200 text-red-900 font-bold';
+            if (dayOfWeek === 6) return 'font-bold';
+            return null;
           }
         }}
-        className="rounded-lg shadow-md p-2"
+        tileContent={() => null}
+        className="rounded-lg shadow-lg p-4 border-2 border-green-200 bg-white"
+        showNeighboringMonth={false}
       />
 
       <ul className="text-sm mt-4 text-gray-700 list-disc list-inside">
