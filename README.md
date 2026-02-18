@@ -60,36 +60,39 @@ Caddyfile block:
 
 ```conf
 church.prud.uk {
-    import security_headers
+	import security_headers
 
-    # Point to the atomic symlink (recommended for zero-downtime deploys)
-    root * /path/to/current/out
+	# Point to the atomic symlink (recommended for zero-downtime deploys)
+	root * /home/abc/church-site/hyvong/current
 
-    # SPA fallback – critical for Next.js client-side routing
-    # so /lich-su-giao-xu and refreshes work without 404
-    try_files {path} {path}/ /index.html
+	encode zstd gzip
 
-    file_server
+	# Long-term caching only for _next/static assets
+	@assets path_regexp ^/_next/static/.*
+	header @assets {
+		Cache-Control "public, max-age=31536000, immutable"
+	}
 
-    # Long-term caching for Next.js static assets
-    @assets path_regexp ^/_next/static/.*
-    header @assets {
-        Cache-Control "public, max-age=3600, immutable"
-    }
+	# Remove trailing slash (except root)
+	@slash path_regexp ^/(.+)/$
+	redir @slash /{re.1} permanent
 
-    # Optional: enable if you want separate logs for this site
-    log {
-        output file /path/to/log/caddy/church-access.log
-        format console
-        level WARN
-    }
+	# Rewrite extensionless paths to .html
+	@html {
+		not path /
+		not path /_next/*
+		not path *.html
+		not file
+	}
+	rewrite @html {path}.html
 
-    # Optional: error logging just for this site (uncomment if needed)
-    log error {
-        output file /path/to/var/log/caddy/church-error.log
-        format console
-        level ERROR
-    }
+	file_server
+
+	log {
+		output file /home/abc/var/log/caddy/church-site/hyvong/access.log
+		format console
+		level WARN
+	}
 }
 ```
 
