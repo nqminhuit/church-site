@@ -61,7 +61,7 @@ export default function HomePage() {
         <div className="md:col-span-2 space-y-10">
           <section>
             <h2 className="text-xl font-semibold text-green-700 mb-2">🌟 Giới thiệu</h2>
-            <p className="text-gray-700 leading-relaxed">Giáo xứ Hy Vọng được thành lập năm XXXX, là nơi quy tụ cộng đoàn tín hữu cùng nhau cầu nguyện, chia sẻ đức tin và phục vụ tha nhân. Chúng tôi luôn chào đón mọi người đến tham dự Thánh lễ và các hoạt động mục vụ.</p>
+            <p className="text-gray-700 leading-relaxed">Giáo xứ Hy Vọng được thành lập và phát triển từ năm 1957 tại Giáo Hạt Tân Sơn Nhì, là nơi quy tụ cộng đoàn tín hữu cùng nhau cầu nguyện, chia sẻ đức tin và phục vụ tha nhân. Chúng tôi luôn chào đón mọi người đến tham dự Thánh lễ và các hoạt động mục vụ.</p>
           </section>
 
 
@@ -100,8 +100,8 @@ export default function HomePage() {
           <section>
             <h2 className="text-xl font-semibold text-green-700 mb-2">⛪ Giờ lễ trong tuần</h2>
             <ul className="list-disc list-inside text-gray-700 space-y-1">
-              <li>Chúa Nhật: 5h30, 7h00, 17h30</li>
-              <li>Thứ Hai - Thứ Bảy: 5h00 sáng</li>
+              <li>Chúa Nhật: 05:30, 07:30, 17:00, 18:30</li>
+              <li>Thứ Hai - Thứ Bảy: 05:00, 18:00</li>
             </ul>
             <Link href="/gio-le" className="text-green-800 underline text-sm mt-2 inline-block">Xem chi tiết &raquo;</Link>
           </section>

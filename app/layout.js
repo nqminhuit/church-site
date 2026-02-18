@@ -26,6 +26,7 @@ export default function RootLayout({ children }) {
               <Link href="/" className="hover:underline">Trang chủ</Link>
               <Link href="/lich-su-giao-xu" className="hover:underline">Lịch sử Giáo Xứ</Link>
               <Link href="/thong-bao" className="hover:underline">Thông báo</Link>
+              <Link href="/hinh-anh" className="hover:underline">Hình ảnh</Link>
               <div className="relative group pb-2">
                 <button className="hover:underline cursor-pointer">Các hoạt động</button>
                 <div className="absolute left-0 top-full hidden group-hover:block hover:block bg-white shadow-lg rounded-md border z-50 min-w-[200px]">
@@ -58,7 +59,7 @@ export default function RootLayout({ children }) {
               <p>&copy; {new Date().getFullYear()} Giáo xứ Hy Vọng. Mọi quyền được bảo lưu.</p>
               <p className="mt-2 flex items-start">
                 <span className="mr-2">🏠</span>
-                <span>Địa chỉ: 123 Đường Hy Vọng, Phường Bình An, Quận 2, TP. Thủ Đức</span>
+                <span>Địa chỉ: 69 Phan Huy Ích, Phường 15, Quận Tân Bình, TP. Hồ Chí Minh</span>
               </p>
             </div>
             <div className="text-left md:text-right">
@@ -68,7 +69,7 @@ export default function RootLayout({ children }) {
               </p>
               <p className="mt-2 flex items-center justify-start md:justify-end">
                 <span className="mr-2">📱</span>
-                <a href="tel:+842812345678" className="underline hover:text-green-200">Điện thoại: (+84) 28 1234 5678</a>
+                <a href="tel:+842838151700" className="underline hover:text-green-200">Điện thoại: (+84) 28 3815 1700</a>
               </p>
               <p className="mt-2 flex items-center justify-start md:justify-end">
                 <span className="mr-2">🔗</span>

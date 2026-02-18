@@ -13,7 +13,7 @@ export default function Page() {
         <tbody className="bg-white text-gray-800">
           <tr className="font-semibold">
             <td className="border border-gray-300 px-4 py-2">Chúa Nhật</td>
-            <td className="border border-gray-300 px-4 py-2">05:30, 07:00, 17:30</td>
+            <td className="border border-gray-300 px-4 py-2">05:30, 07:30, 17:00, 18:30</td>
             <td className="border border-gray-300 px-4 py-2">Thánh Lễ Trọng</td>
           </tr>
           <tr>
