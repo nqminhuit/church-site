@@ -12,7 +12,7 @@
 ## Cài đặt và Chạy
 
 ### Yêu cầu
-- Node.js 18+
+- Node.js 24+
 - npm hoặc yarn
 
 ### Bước cài đặt
@@ -41,7 +41,6 @@ Mở [http://localhost:3000](http://localhost:3000) trong trình duyệt để x
   - `layout.js`: Layout chung
   - Các thư mục con cho từng trang (e.g., `lien-he/page.js`)
 - **components/**: Component tái sử dụng (e.g., `CalendarSection.js`)
-- **public/**: Tài sản tĩnh (hình ảnh trong `photos/`, favicon, etc.)
 
 ## Thêm và Cập nhật Nội dung
 
@@ -49,6 +48,12 @@ Mở [http://localhost:3000](http://localhost:3000) trong trình duyệt để x
 - **Hình ảnh**: Thêm vào `public/photos/` và cập nhật trong `app/page.js`
 - **Thông tin**: Chỉnh sửa nội dung trong các file trang hoặc tạo trang mới dưới `app/`
 - **Thông báo**: Thêm vào phần thông báo trong `app/page.js` hoặc tạo trang `/thong-bao`
+- **Main banner**:
+
+``` bash
+aws s3 cp /path/to/file.jpg s3://web/church/hyvong/media/main_banner.jpg
+```
+
 
 ## Triển khai
 
