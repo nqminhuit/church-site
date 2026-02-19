@@ -49,9 +49,13 @@ Mở [http://localhost:3000](http://localhost:3000) trong trình duyệt để x
 - **Thông tin**: Chỉnh sửa nội dung trong các file trang hoặc tạo trang mới dưới `app/`
 - **Thông báo**: Thêm vào phần thông báo trong `app/page.js` hoặc tạo trang `/thong-bao`
 - **Main banner**:
-
 ``` bash
 aws s3 cp /path/to/file.jpg s3://web/church/hyvong/media/main_banner.jpg
+```
+- **Gospel of the day**:
+
+``` bash
+aws s3 cp public/gospel_of_the_day.json s3://web/church/hyvong/gospel_of_the_day.json
 ```
 
 

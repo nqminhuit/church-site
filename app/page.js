@@ -10,8 +10,34 @@ export default function HomePage() {
   const [date, setDate] = useState(new Date());
   const [announcements, setAnnouncements] = useState([]);
   const [images, setImages] = useState([]);
+  const [gospelOfTheDay, setGospelOfTheDay] = useState(null);
+  const [liturgicalCalendar, setLiturgicalCalendar] = useState(null);
+  const [lectionary, setLectionary] = useState(null);
 
   const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
+
+  const getSundayLabel = (dayInfo) => {
+    const seasons = {
+      advent: 'Mùa Vọng',
+      christmas: 'Mùa Giáng Sinh',
+      ordinary: 'Mùa Thường Niên',
+      lent: 'Mùa Chay',
+      easter: 'Mùa Phục Sinh'
+    };
+    const weekdays = {
+      sun: 'Chúa Nhật',
+      mon: 'Thứ Hai',
+      tue: 'Thứ Ba',
+      wed: 'Thứ Tư',
+      thu: 'Thứ Năm',
+      fri: 'Thứ Sáu',
+      sat: 'Thứ Bảy'
+    };
+    if (dayInfo.week_of_season === 0) {
+      return `${weekdays[dayInfo.weekday]} ${seasons[dayInfo.season]}`;
+    }
+    return `${weekdays[dayInfo.weekday]} ${seasons[dayInfo.season]} Tuần ${dayInfo.week_of_season}`;
+  };
 
   useEffect(() => {
     fetch(MINIO_BASE + '/index.json')
@@ -24,12 +50,48 @@ export default function HomePage() {
         setImages(sortedImages);
       })
       .catch(console.error);
+
+    // Fetch liturgical calendar and lectionary
+    const currentYear = new Date().getFullYear();
+    Promise.all([
+      fetch(`https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/liturgical-calendar-${currentYear}.json`),
+      fetch('https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/lectionary.json')
+    ])
+      .then(([calRes, lecRes]) => Promise.all([calRes.json(), lecRes.json()]))
+      .then(([calData, lecData]) => {
+        setLiturgicalCalendar(calData);
+        setLectionary(lecData);
+      })
+      .catch(console.error);
   }, []);
+
+  // Compute Gospel of the Day
+  useEffect(() => {
+    if (liturgicalCalendar && lectionary) {
+      const currentDate = new Date().toISOString().split('T')[0];
+      const dayInfo = liturgicalCalendar[currentDate];
+      if (dayInfo) {
+        const reading = lectionary.readings[dayInfo.lectionary_key];
+        if (reading && reading.gospel) {
+          const sunday = getSundayLabel(dayInfo);
+          setGospelOfTheDay({
+            quote: reading.gospelQuote,
+            reference: reading.gospel,
+            sunday: sunday
+          });
+        } else {
+          setGospelOfTheDay(null);
+        }
+      } else {
+        setGospelOfTheDay(null);
+      }
+    }
+  }, [liturgicalCalendar, lectionary]);
 
   return (
     <div className="space-y-12">
       {/* Banner on top across full width */}
-      <section className="text-center py-20 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden">
+      <section className="text-center py-20 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden animate-[fadeIn_1s_ease-out_forwards]">
         <Image
           src={MINIO_BASE + '/media/main_banner.jpg'}
           alt="Giáo xứ Hy Vọng community gathering"
@@ -46,13 +108,24 @@ export default function HomePage() {
       </section>
 
       {/* Word of God Section - Full Width */}
-      <section className="max-w-4xl mx-auto text-center py-8 bg-gradient-to-r from-green-50 to-green-200 border border-green-300 rounded-lg shadow-lg my-8">
+      <section className="max-w-4xl mx-auto text-center py-8 bg-gradient-to-r from-green-50 to-green-200 border border-green-300 rounded-lg shadow-lg my-8 animate-[fadeIn_1s_ease-out_0.3s_forwards]">
         <h2 className="text-2xl font-bold text-green-900 mb-4">📖 Lời Chúa hôm nay</h2>
-        <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
-          &quot;Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.&quot;
-        </blockquote>
-        <cite className="text-sm text-gray-600 mt-2 block">(Ga 15,12)</cite>
-        <p className="text-sm text-green-700 font-semibold mt-2">Chúa Nhật XIV Thường Niên - Năm B</p>
+        {gospelOfTheDay ? (
+          <>
+            <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
+              &quot;{gospelOfTheDay.quote}&quot;
+            </blockquote>
+            <cite className="text-sm text-gray-600 mt-2 block">({gospelOfTheDay.reference})</cite>
+            <p className="text-sm text-green-700 font-semibold mt-2">{gospelOfTheDay.sunday}</p>
+          </>
+        ) : (
+          <>
+            <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
+              &quot;Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.&quot;
+            </blockquote>
+            <cite className="text-sm text-gray-600 mt-2 block">(Ga 15,12)</cite>
+          </>
+        )}
       </section>
 
       {/* Grid: Left - Content, Right - Calendar */}
