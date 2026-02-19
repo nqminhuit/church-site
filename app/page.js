@@ -30,15 +30,15 @@ export default function HomePage() {
     <div className="space-y-12">
       {/* Banner on top across full width */}
       <section className="text-center py-20 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden">
+        <Image
+          src={MINIO_BASE + '/media/main_banner.jpg'}
+          alt="Giáo xứ Hy Vọng community gathering"
+          width={800}
+          height={400}
+          className="rounded-lg shadow-lg mb-6 object-cover block mx-auto"
+          priority
+        />
         <div className="max-w-4xl mx-auto">
-          <Image
-            src="/photos/event1.compressed.jpg"
-            alt="Giáo xứ Hy Vọng community gathering"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-lg mb-6 object-cover"
-            priority
-          />
           <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
           <p className="mt-4 text-lg text-gray-700">&quot;Hy vọng nơi Chúa là nguồn sức mạnh của chúng ta.&quot; (Is 40,31)</p>
           <Link href="/gio-le" className="mt-6 inline-block bg-green-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition">Tham Dự Thánh Lễ</Link>
