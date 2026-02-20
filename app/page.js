@@ -34,9 +34,16 @@ export default function HomePage() {
       sat: 'Thứ Bảy'
     };
     if (dayInfo.week_of_season === 0) {
-      return `${weekdays[dayInfo.weekday]} ${seasons[dayInfo.season]}`;
+      return `
+        ${weekdays[dayInfo.weekday]}
+        ${seasons[dayInfo.season]}
+        Năm ${dayInfo.weekday === 'sun' ? dayInfo.sunday_cycle : dayInfo.weekday_cycle}`;
     }
-    return `${weekdays[dayInfo.weekday]} ${seasons[dayInfo.season]} Tuần ${dayInfo.week_of_season}`;
+    return `
+      ${weekdays[dayInfo.weekday]}
+      ${seasons[dayInfo.season]}
+      Tuần ${dayInfo.week_of_season}
+      Năm ${dayInfo.weekday === 'sun' ? dayInfo.sunday_cycle : dayInfo.weekday_cycle}`;
   };
 
   useEffect(() => {
