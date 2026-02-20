@@ -75,8 +75,8 @@ export default function HomePage() {
   // Compute Gospel of the Day
   useEffect(() => {
     if (liturgicalCalendar && lectionary) {
-      const currentDate = new Date().toISOString().split('T')[0];
-      const dayInfo = liturgicalCalendar[currentDate];
+      const selectedDate = date.toISOString().split('T')[0];
+      const dayInfo = liturgicalCalendar[selectedDate];
       if (dayInfo) {
         const reading = lectionary.readings[dayInfo.lectionary_key];
         if (reading && reading.gospel) {
@@ -93,7 +93,7 @@ export default function HomePage() {
         setGospelOfTheDay(null);
       }
     }
-  }, [liturgicalCalendar, lectionary]);
+  }, [liturgicalCalendar, lectionary, date]);
 
   return (
     <div className="space-y-12">
@@ -115,8 +115,10 @@ export default function HomePage() {
       </section>
 
       {/* Word of God Section - Full Width */}
-      <section className="max-w-4xl mx-auto text-center py-8 bg-gradient-to-r from-green-50 to-green-200 border border-green-300 rounded-lg shadow-lg my-8 animate-[fadeIn_1s_ease-out_0.3s_forwards]">
-        <h2 className="text-2xl font-bold text-green-900 mb-4">📖 Lời Chúa hôm nay</h2>
+      <section className="max-w-4xl mx-auto text-center py-6 bg-gradient-to-r from-green-50 to-green-200 border border-green-300 rounded-lg shadow-lg my-8 animate-[fadeIn_1s_ease-out_0.3s_forwards] min-h-[14em]">
+        <h2 className="text-2xl font-bold text-green-900 mb-4">
+          {date.toDateString() === new Date().toDateString() ? "📖 Lời Chúa hôm nay" : `📖 Lời Chúa ${date.toLocaleDateString('vi-VN')}`}
+        </h2>
         {gospelOfTheDay ? (
           <>
             <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
