@@ -50,10 +50,14 @@ export default function HomePage() {
     fetch(MINIO_BASE + '/index.json')
       .then(res => res.json())
       .then(data => {
-        const sortedAnnouncements = data.announcements ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3) : [];
+        const sortedAnnouncements = data.announcements
+          ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3)
+          : [];
         setAnnouncements(sortedAnnouncements);
 
-        const sortedImages = data.images ? data.images.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4) : [];
+        const sortedImages = data.images
+          ? data.images.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4)
+          : [];
         setImages(sortedImages);
       })
       .catch(console.error);
@@ -152,8 +156,6 @@ export default function HomePage() {
             <h2 className="text-xl font-semibold text-green-700 mb-2">🌟 Giới thiệu</h2>
             <p className="text-gray-700 leading-relaxed">Giáo xứ Hy Vọng được thành lập và phát triển từ năm 1957 tại Giáo Hạt Tân Sơn Nhì, là nơi quy tụ cộng đoàn tín hữu cùng nhau cầu nguyện, chia sẻ đức tin và phục vụ tha nhân. Chúng tôi luôn chào đón mọi người đến tham dự Thánh lễ và các hoạt động mục vụ.</p>
           </section>
-
-
 
           <section className="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-600 p-6 rounded-lg shadow-sm">
             <h2 className="text-xl font-bold text-green-800 mb-3 flex items-center">
