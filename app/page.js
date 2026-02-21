@@ -75,7 +75,7 @@ export default function HomePage() {
   // Compute Gospel of the Day
   useEffect(() => {
     if (liturgicalCalendar && lectionary) {
-      const selectedDate = date.toISOString().split('T')[0];
+      const selectedDate = date.toLocaleDateString('en-CA', {timeZone: 'Asia/Ho_Chi_Minh'});
       const dayInfo = liturgicalCalendar[selectedDate];
       if (dayInfo) {
         const reading = lectionary.readings[dayInfo.lectionary_key];
