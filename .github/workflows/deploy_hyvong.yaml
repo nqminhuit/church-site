@@ -9,6 +9,10 @@ on:
     branches: [main]
     paths-ignore:
       - '.github/**'
+      - 'README.md'
+      - 'eslint.config.mjs'
+      - '.editorconfig'
+      - '.gitignore'
   workflow_dispatch:
   workflow_run:
     workflows: ["Create Announcement"]
@@ -18,7 +22,7 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    if: (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success') && github.actor != 'github-actions[bot]'
     steps:
       - name: Checkout
         uses: actions/checkout@v4

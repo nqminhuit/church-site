@@ -44,97 +44,45 @@ Mở [http://localhost:3000](http://localhost:3000) trong trình duyệt để x
 
 ## Thêm và Cập nhật Nội dung
 
-- **Lịch sự kiện**: Chỉnh sửa mảng `events` trong `components/CalendarSection.js`
+- **Cập nhật thông báo**:
+  1. use a markdown editor e.g., https://stackedit.io (online) and write the new announcement there
+  2. review content, then copy it to a file temp: e.g., `/tmp/ann.md`
+  3. encode the file into 1 single line of text with this command: `base64 -w0 /tmp/ann.md`
+  4. go to github action 'Create Announcement' then trigger with inputs:
+	  1. Content: the output of step #3
+	  2. Slug: filename also will be the slug in url path
+	  3. Summary: short texts to let people know about the content
+	  4. Thumbnail: for the /thong-bao page
+
 - **Hình ảnh**: Thêm vào `public/photos/` và cập nhật trong `app/page.js`
-- **Thông tin**: Chỉnh sửa nội dung trong các file trang hoặc tạo trang mới dưới `app/`
-- **Thông báo**: Thêm vào phần thông báo trong `app/page.js` hoặc tạo trang `/thong-bao`
-- **Main banner**:
+
+- **Update Main banner**:
 ``` bash
 aws s3 cp /path/to/file.jpg s3://web/church/hyvong/media/main_banner.jpg
 ```
-- **Gospel of the day**:
 
-``` bash
-aws s3 cp public/gospel_of_the_day.json s3://web/church/hyvong/gospel_of_the_day.json
-```
+- **Gospel of the day**:
+There will be another repository responsible for this content: https://github.com/nqminhuit/liturgical-calendar
+  - The calendar must be commit to `resources/liturgical-calendar-<year>.json` of that repository
+  - The `resources/lectionary.json` is one-time-work and will be reused every year.
+  - `resources/vietnam-liturgical-calendar-<year>.json`: this file will override some Masses specific only in Vietnam.
 
 
 ## Triển khai
+Deploy tự động khi push thay đổi on main branch
 
-Website được cấu hình sẵn cho Vercel:
-1. Kết nối repository với Vercel
-2. Deploy tự động khi push thay đổi
-
-Caddyfile block:
-
-```conf
-church.prud.uk {
-	import security_headers
-
-	# Point to the atomic symlink (recommended for zero-downtime deploys)
-	root * /home/abc/church-site/hyvong/current
-
-	encode zstd gzip
-
-	# Long-term caching only for _next/static assets
-	@assets path_regexp ^/_next/static/.*
-	header @assets {
-		Cache-Control "public, max-age=31536000, immutable"
-	}
-
-	# Remove trailing slash (except root)
-	@slash path_regexp ^/(.+)/$
-	redir @slash /{re.1} permanent
-
-	# Rewrite extensionless paths to .html
-	@html {
-		not path /
-		not path /_next/*
-		not path *.html
-		not file
-	}
-	rewrite @html {path}.html
-
-	file_server
-
-	log {
-		output file /home/abc/var/log/caddy/church-site/hyvong/access.log
-		format console
-		level WARN
-	}
-}
-```
 
 ### Các bước triển khai thủ công
 1. Build production:
-   ```bash
-   npm run build
-   ```
-2. Start server:
-   ```bash
-   (cd out && python -m http.server 8000)
-   ```
+ ```bash
+ npm run build
+ ```
 
-one-liner:
-``` bash
-rm -rf out/ && npm run build && (cd out && python -m http.server 8000)
-```
+2. Start server (dev):
+ ```bash
+ (cd out && python -m http.server 8000)
+ ```
 
-
-
-## Công nghệ Sử dụng
-
-- **Next.js 15**: Framework React với app router
-- **React 19**: Component-based UI
-- **Tailwind CSS v4**: Styling và responsive design
-- **React Calendar**: Component calendar tương tác
-
-## Phát triển Thêm
-
-- Thêm TypeScript để type safety
-- Thiết lập testing với Jest
-- Tích hợp CMS để quản lý nội dung động
-- Thêm đa ngôn ngữ nếu cần
 
 ## Đóng góp
 

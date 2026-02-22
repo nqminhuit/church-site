@@ -3,9 +3,6 @@ name: Create Announcement
 on:
   workflow_dispatch:
     inputs:
-      title:
-        description: 'Title'
-        required: true
       content:
         description: 'Content'
         required: true
@@ -27,7 +24,7 @@ jobs:
       S3_PATH: 's3://web/church/hyvong'
     steps:
       - name: Create markdown file
-        run: base64 -d -i ${{ github.event.inputs.content }} > ${{ github.event.inputs.slug }}.md
+        run: printf "%s" "${{ github.event.inputs.content }}" | base64 -d > ${{ github.event.inputs.slug }}.md
 
       - name: Configure AWS CLI
         run: |
