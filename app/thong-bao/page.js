@@ -7,6 +7,8 @@ import { fetchIndexJson, MINIO_BASE } from '../utils/fetchIndex';
 
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const announcementsPerPage = 7;
 
   useEffect(() => {
     fetchIndexJson()
@@ -17,6 +19,11 @@ export default function AnnouncementsPage() {
       })
       .catch(console.error);
   }, []);
+
+  const indexOfLast = currentPage * announcementsPerPage;
+  const indexOfFirst = indexOfLast - announcementsPerPage;
+  const currentAnnouncements = announcements.slice(indexOfFirst, indexOfLast);
+  const totalPages = Math.ceil(announcements.length / announcementsPerPage);
 
   return (
     <main className="min-h-screen p-6 max-w-5xl mx-auto">
@@ -30,15 +37,15 @@ export default function AnnouncementsPage() {
 
       {/* Announcements List */}
       <section className="space-y-6">
-        {announcements.map((announcement, idx) => (
-          <div key={idx} className="bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300">
+        {currentAnnouncements.map((announcement, idx) => (
+          <div key={idx} className="shadow-md rounded-lg overflow-hidden hover:shadow-lg hover:scale-105 transition-all duration-300">
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <Image
                   src={`${MINIO_BASE}/media/${announcement.thumbnail || announcement.image}`}
                   alt={announcement.title}
-                  width={200}
-                  height={150}
+                  width={0}
+                  height={0}
                   className="object-cover md:h-full md:w-48"
                 />
               </div>
@@ -61,6 +68,25 @@ export default function AnnouncementsPage() {
           </div>
         ))}
       </section>
+
+      {/* Pagination */}
+      <div className="flex justify-center items-center space-x-4 mt-8">
+        <button
+          onClick={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          Previous
+        </button>
+        <span className="text-gray-700">Page {currentPage} of {totalPages}</span>
+        <button
+          onClick={() => setCurrentPage(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+          Next
+        </button>
+      </div>
     </main>
   );
 }
