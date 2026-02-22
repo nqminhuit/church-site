@@ -6,9 +6,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import { fetchIndexJson, MINIO_BASE } from './utils/fetchIndex';
+import { fetchAnnouncements, fetchPhotos, MINIO_BASE } from './utils/fetchIndex';
 
 export default function HomePage() {
+  const topItemsCount = 3;
   const [date, setDate] = useState(new Date());
   const [announcements, setAnnouncements] = useState([]);
   const [images, setImages] = useState([]);
@@ -48,18 +49,16 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    fetchIndexJson()
-      .then(data => {
-        const sortedAnnouncements = data.announcements ? data.announcements.slice(0, 3) : [];
-        setAnnouncements(sortedAnnouncements);
-
-        const sortedImages = data.images ? data.images.slice(0, 3) : [];
-        setImages(sortedImages);
-      })
+    fetchAnnouncements()
+      .then(anns => setAnnouncements(anns ? anns.slice(0, topItemsCount) : []))
+      .catch(console.error);
+    fetchPhotos()
+      .then(imgs => setImages(imgs ? imgs.slice(0, topItemsCount) : []))
       .catch(console.error);
 
     // Fetch liturgical calendar and lectionary
-    const currentYear = new Date().getFullYear();
+    // const currentYear = new Date().getFullYear();
+    const currentYear = date.getFullYear();
     Promise.all([
       fetch(`https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/liturgical-calendar-${currentYear}.json`),
       fetch('https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/lectionary.json')
@@ -70,7 +69,7 @@ export default function HomePage() {
         setLectionary(lecData);
       })
       .catch(console.error);
-  }, []);
+  }, [date]);
 
   // Compute Gospel of the Day
   useEffect(() => {

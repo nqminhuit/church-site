@@ -1,11 +1,11 @@
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
-import { fetchIndexJson, MINIO_BASE } from '../../utils/fetchIndex';
+import { fetchAnnouncements, MINIO_BASE } from '../../utils/fetchIndex';
 
 // This function tells Next.js which dynamic routes to pre-render at build time
 export async function generateStaticParams() {
-  const data = await fetchIndexJson();
-  return data.announcements.map((ann) => ({
+  const anns = await fetchAnnouncements();
+  return anns.map((ann) => ({
     slug: ann.slug,
   }));
 }

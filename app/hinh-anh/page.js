@@ -3,16 +3,14 @@
 import ImageModal from '@/components/ImageModal';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { fetchIndexJson, MINIO_BASE } from '../utils/fetchIndex';
+import { fetchPhotos, MINIO_BASE } from '../utils/fetchIndex';
 
 export default function Page() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    fetchIndexJson()
-      .then(data => setImages(data.images))
-      .catch(console.error);
+    fetchPhotos().then(setImages).catch(console.error);
   }, []);
 
   return (

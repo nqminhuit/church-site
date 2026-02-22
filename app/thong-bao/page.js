@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { fetchIndexJson, MINIO_BASE } from '../utils/fetchIndex';
+import { fetchAnnouncements, MINIO_BASE } from '../utils/fetchIndex';
 
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);
@@ -11,9 +11,7 @@ export default function AnnouncementsPage() {
   const announcementsPerPage = 7;
 
   useEffect(() => {
-    fetchIndexJson()
-      .then(data => setAnnouncements(data.announcements ? data.announcements : []))
-      .catch(console.error);
+    fetchAnnouncements().then(setAnnouncements).catch(console.error);
   }, []);
 
   const indexOfLast = currentPage * announcementsPerPage;
