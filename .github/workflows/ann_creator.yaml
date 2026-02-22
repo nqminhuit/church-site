@@ -35,6 +35,10 @@ jobs:
           # ${{ github.event.inputs.title }}
 
           ${{ github.event.inputs.content }}
+
+          ![Ảnh sự kiện](${{ github.event.inputs.image }})
+
+          *Hội Đồng Mục Vụ Giáo xứ Hy Vọng*
           EOF
 
       - name: Configure AWS CLI
