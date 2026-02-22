@@ -1,9 +1,9 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import CalendarSection from '@/components/CalendarSection';
 import Image from 'next/image';
 import Link from 'next/link';
-import CalendarSection from '@/components/CalendarSection';
+import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 import { fetchIndexJson, MINIO_BASE } from './utils/fetchIndex';
 
@@ -48,14 +48,10 @@ export default function HomePage() {
   useEffect(() => {
     fetchIndexJson()
       .then(data => {
-        const sortedAnnouncements = data.announcements
-          ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3)
-          : [];
+        const sortedAnnouncements = data.announcements ? data.announcements.slice(0, 3) : [];
         setAnnouncements(sortedAnnouncements);
 
-        const sortedImages = data.images
-          ? data.images.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 4)
-          : [];
+        const sortedImages = data.images ? data.images.slice(0, 4) : [];
         setImages(sortedImages);
       })
       .catch(console.error);
@@ -77,7 +73,7 @@ export default function HomePage() {
   // Compute Gospel of the Day
   useEffect(() => {
     if (liturgicalCalendar && lectionary) {
-      const selectedDate = date.toLocaleDateString('en-CA', {timeZone: 'Asia/Ho_Chi_Minh'});
+      const selectedDate = date.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
       const dayInfo = liturgicalCalendar[selectedDate];
       if (dayInfo) {
         const reading = lectionary.readings[dayInfo.lectionary_key];
@@ -132,18 +128,18 @@ export default function HomePage() {
         </h2>
         {gospelOfTheDay
           ? (<>
-               <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
-                 <q>{gospelOfTheDay.quote}</q>
-               </blockquote>
-               <cite className="text-sm text-gray-600 mt-2 block">({gospelOfTheDay.reference})</cite>
-               <p className="text-sm text-green-700 font-semibold mt-2">{gospelOfTheDay.sunday}</p>
-             </>)
+            <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
+              <q>{gospelOfTheDay.quote}</q>
+            </blockquote>
+            <cite className="text-sm text-gray-600 mt-2 block">({gospelOfTheDay.reference})</cite>
+            <p className="text-sm text-green-700 font-semibold mt-2">{gospelOfTheDay.sunday}</p>
+          </>)
           : (<>
-               <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
-                 <q>Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.</q>
-               </blockquote>
-               <cite className="text-sm text-gray-600 mt-2 block">(Ga 15,12)</cite>
-             </>)}
+            <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
+              <q>Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.</q>
+            </blockquote>
+            <cite className="text-sm text-gray-600 mt-2 block">(Ga 15,12)</cite>
+          </>)}
       </section>
 
       {/* Grid: Left - Content, Right - Calendar */}
@@ -198,7 +194,7 @@ export default function HomePage() {
 
         {/* Right Column: Calendar */}
         <div className="space-y-4">
-          <CalendarSection date={date} onChange={setDate}/>
+          <CalendarSection date={date} onChange={setDate} />
           <p className="text-sm text-gray-600">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
         </div>
       </div>

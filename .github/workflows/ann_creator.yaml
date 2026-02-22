@@ -71,10 +71,10 @@ jobs:
               'date': date,
               'summary': '${{ github.event.inputs.summary }}',
               'image': '${{ github.event.inputs.image }}',
-              'thumbnail': '${{ github.event.inputs.thumbnail }}'
+              'thumbnail': '${{ github.event.inputs.thumbnail }}',
               'slug': '${{ github.event.inputs.slug }}'
           }
-          data['announcements'].append(new_ann)
+          data['announcements'].insert(0, new_ann)
           with open('index.json', 'w', encoding='utf-8') as f:
               json.dump(data, f, indent=2, ensure_ascii=False)
           "
