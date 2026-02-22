@@ -1,6 +1,7 @@
-import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
-import { fetchAnnouncements, MINIO_BASE } from '../../utils/fetchIndex';
+import ReactMarkdown from 'react-markdown';
+import { fetchAnnouncements, MINIO_BASE } from '@/app/utils/fetchIndex';
+import rehypeRaw from 'rehype-raw';
 
 // This function tells Next.js which dynamic routes to pre-render at build time
 export async function generateStaticParams() {
@@ -24,6 +25,7 @@ export default async function AnnouncementPage({ params }) {
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <ReactMarkdown
+        rehypePlugins={[rehypeRaw]}
         components={{
           h1: ({ children }) => <h1 className="text-4xl font-bold text-green-800 mb-6 mt-8 first:mt-0">{children}</h1>,
           h2: ({ children }) => <h2 className="text-3xl font-semibold text-green-800 mb-4 mt-6">{children}</h2>,
