@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image';
-import { MINIO_BASE } from '../app/utils/fetchIndex';
+import { MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function ImageModal({ selectedImage, onClose }) {
   if (!selectedImage) return null;

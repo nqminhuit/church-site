@@ -6,7 +6,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import { fetchAnnouncements, fetchPhotos, MINIO_BASE } from './utils/fetchIndex';
+import { fetchAnnouncements, fetchPhotos, MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function HomePage() {
   const topItemsCount = 3;

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MINIO_BASE } from '../utils/fetchIndex';
+import { MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function HistoryPage() {
   return (

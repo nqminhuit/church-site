@@ -3,7 +3,7 @@
 import ImageModal from '@/components/ImageModal';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { fetchPhotos, MINIO_BASE } from '../utils/fetchIndex';
+import { fetchPhotos, MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function Page() {
   const [images, setImages] = useState([]);

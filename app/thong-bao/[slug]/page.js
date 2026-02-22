@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import { fetchAnnouncements, MINIO_BASE } from '@/app/utils/fetchIndex';
+import { fetchAnnouncements, MINIO_BASE } from '@/utils/fetchIndex';
 import rehypeRaw from 'rehype-raw';
 
 // This function tells Next.js which dynamic routes to pre-render at build time

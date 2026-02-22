@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { fetchAnnouncements, MINIO_BASE } from '../utils/fetchIndex';
+import { fetchAnnouncements, MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);

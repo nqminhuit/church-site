@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { MINIO_BASE } from '../utils/fetchIndex';
+import { MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function ActivitiesPage() {
   const activities = [
