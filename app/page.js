@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CalendarSection from '@/components/CalendarSection';
 import 'react-calendar/dist/Calendar.css';
+import { fetchIndexJson } from './utils/fetchIndex';
 
 export default function HomePage() {
   const [date, setDate] = useState(new Date());
@@ -47,8 +48,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    fetch(MINIO_BASE + '/index.json')
-      .then(res => res.json())
+    fetchIndexJson()
       .then(data => {
         const sortedAnnouncements = data.announcements
           ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3)
@@ -104,7 +104,7 @@ export default function HomePage() {
       {/* Banner on top across full width */}
       <section className="text-center py-6 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden animate-[fadeIn_1s_ease-out_forwards]">
         <Image
-          src={MINIO_BASE + '/media/main_banner.jpg'}
+          src={`${MINIO_BASE}/media/main_banner.jpg`}
           alt="Giáo xứ Hy Vọng community gathering"
           width={800}
           height={400}
@@ -177,7 +177,7 @@ export default function HomePage() {
               {images.map((item, idx) => (
                 <Image
                   key={idx}
-                  src={MINIO_BASE + '/media/' + item.src}
+                  src={`${MINIO_BASE}/media/item.src`}
                   alt={item.alt}
                   width={232}
                   height={160}

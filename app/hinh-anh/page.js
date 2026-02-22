@@ -2,15 +2,15 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
+import { fetchIndexJson } from '../utils/fetchIndex';
 
 export default function Page() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-  const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong/';
+  const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
 
   useEffect(() => {
-    fetch(MINIO_BASE + 'index.json')
-      .then(res => res.json())
+    fetchIndexJson()
       .then(data => {
         // Assume data has "images": array of {src, alt, date}
         setImages(data.images ? data.images.sort((a, b) => new Date(b.date) - new Date(a.date)) : []);
@@ -25,7 +25,7 @@ export default function Page() {
         {images.map((image, idx) => (
           <div key={idx} className="overflow-hidden rounded-lg shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer" onClick={() => setSelectedImage(image)}>
             <Image
-              src={MINIO_BASE + 'media/' + image.src}
+              src={`${MINIO_BASE}/media/${image.src}`}
               alt={image.alt}
               width={300}
               height={200}
@@ -43,7 +43,7 @@ export default function Page() {
         <div className="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center z-50" onClick={() => setSelectedImage(null)}>
           <div className="relative p-4" onClick={(e) => e.stopPropagation()}>
             <Image
-              src={MINIO_BASE + 'media/' + selectedImage.src}
+              src={`${MINIO_BASE}/media/${selectedImage.src}`}
               alt={selectedImage.alt}
               className="rounded-lg"
               width={1750}

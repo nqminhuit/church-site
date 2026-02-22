@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { fetchIndexJson } from '../utils/fetchIndex';
 
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);
@@ -10,8 +11,7 @@ export default function AnnouncementsPage() {
   const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
 
   useEffect(() => {
-    fetch(MINIO_BASE + '/index.json')
-      .then(res => res.json())
+    fetchIndexJson()
       .then(data => {
         // Assume data is array of {title, date, summary, image, slug}
         setAnnouncements(data.announcements ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)) : []);
