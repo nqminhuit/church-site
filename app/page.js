@@ -102,7 +102,7 @@ export default function HomePage() {
   return (
     <div className="space-y-12">
       {/* Banner on top across full width */}
-      <section className="text-center py-20 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden animate-[fadeIn_1s_ease-out_forwards]">
+      <section className="text-center py-6 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden animate-[fadeIn_1s_ease-out_forwards]">
         <Image
           src={MINIO_BASE + '/media/main_banner.jpg'}
           alt="Giáo xứ Hy Vọng community gathering"

@@ -46,6 +46,8 @@ export default function Page() {
               src={MINIO_BASE + 'media/' + selectedImage.src}
               alt={selectedImage.alt}
               className="rounded-lg"
+              width={1750}
+              height={0}
             />
             <button
               className="absolute top-4 right-4 text-white text-3xl font-bold hover:text-gray-300"
