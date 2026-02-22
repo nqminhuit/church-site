@@ -7,7 +7,7 @@ export const metadata = {
   title: 'Giáo xứ Hy Vọng',
   description: 'Trang thông tin Giáo xứ Hy Vọng',
   icons: {
-    icon: {url: '/favicon.svg', type: 'image/svg+xml'},
+    icon: { url: '/favicon.svg', type: 'image/svg+xml' },
   }
 };
 
@@ -46,7 +46,7 @@ export default function RootLayout({ children }) {
         </header>
 
         {/* Main content */}
-        <main className="max-w-6xl mx-auto px-4 py-8 flex-grow">
+        <main className="max-w-6xl mx-auto px-4 py-6 flex-grow">
           <ErrorBoundary>
             {children}
           </ErrorBoundary>

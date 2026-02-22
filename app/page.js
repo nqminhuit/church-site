@@ -101,8 +101,8 @@ export default function HomePage() {
         <Image
           src={`${MINIO_BASE}/media/main_banner.jpg`}
           alt="Giáo xứ Hy Vọng community gathering"
-          width={800}
-          height={400}
+          width={500}
+          height={0}
           className="rounded-lg shadow-lg mb-6 object-cover block mx-auto"
           priority
         />
