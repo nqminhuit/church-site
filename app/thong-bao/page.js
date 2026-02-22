@@ -35,7 +35,7 @@ export default function AnnouncementsPage() {
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <Image
-                  src={`${MINIO_BASE}/media/${announcement.image}`}
+                  src={`${MINIO_BASE}/media/${announcement.thumbnail || announcement.image}`}
                   alt={announcement.title}
                   width={200}
                   height={150}

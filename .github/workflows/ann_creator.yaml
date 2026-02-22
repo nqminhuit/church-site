@@ -19,6 +19,10 @@ on:
         description: 'Image filename (optional)'
         required: false
         default: 'default-announcement.jpg'
+      thumbnail:
+        description: 'Image thumbnail (optional)'
+        required: false
+        default: default-mass-thumbnail.jpg
 
 jobs:
   create-ann:
@@ -67,6 +71,7 @@ jobs:
               'date': date,
               'summary': '${{ github.event.inputs.summary }}',
               'image': '${{ github.event.inputs.image }}',
+              'thumbnail': '${{ github.event.inputs.thumbnail }}'
               'slug': '${{ github.event.inputs.slug }}'
           }
           data['announcements'].append(new_ann)
