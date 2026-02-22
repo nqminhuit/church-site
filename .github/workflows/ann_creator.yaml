@@ -62,7 +62,7 @@ jobs:
           if not found:
               data.insert(0, new_ann)
           with open('anns.json', 'w', encoding='utf-8') as f:
-              json.dump(data, f, indent=2, ensure_ascii=False)
+              json.dump(data, f, ensure_ascii=False)
           "
 
       - name: Upload updated anns.json to MinIO
