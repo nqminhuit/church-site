@@ -45,6 +45,8 @@ export default async function AnnouncementPage({ params }) {
           },
           code: ({ children }) => <code className="bg-gray-100 px-1 py-0.5 rounded text-sm">{children}</code>,
           pre: ({ children }) => <pre className="bg-gray-100 p-4 rounded overflow-x-auto mb-4">{children}</pre>,
+          sub: ({ children }) => <sub className="text-xs align-sub text-gray-500">{children}</sub>,
+          sup: ({ children }) => <sup className="text-xs align-super text-gray-500">{children}</sup>,
         }}>
         {content}
       </ReactMarkdown>
