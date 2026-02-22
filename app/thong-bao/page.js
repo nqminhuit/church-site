@@ -12,11 +12,7 @@ export default function AnnouncementsPage() {
 
   useEffect(() => {
     fetchIndexJson()
-      .then(data => {
-        setAnnouncements(data.announcements
-          ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date))
-          : []);
-      })
+      .then(data => setAnnouncements(data.announcements ? data.announcements : []))
       .catch(console.error);
   }, []);
 
@@ -42,7 +38,7 @@ export default function AnnouncementsPage() {
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <Image
-                  src={`${MINIO_BASE}/media/${announcement.thumbnail || announcement.image}`}
+                  src={`${MINIO_BASE}/media/${announcement.thumbnail}`}
                   alt={announcement.title}
                   width={0}
                   height={0}

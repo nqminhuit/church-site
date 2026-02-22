@@ -4,23 +4,19 @@ on:
   workflow_dispatch:
     inputs:
       title:
-        description: 'Title of the announcement'
+        description: 'Title'
         required: true
       content:
-        description: 'Content of the announcement'
+        description: 'Content'
         required: true
       slug:
-        description: 'Part at the end of a web address that identifies and describes a specific page'
+        description: 'Slug'
         required: true
       summary:
-        description: 'Summary for the announcement'
+        description: 'Summary'
         required: true
-      image:
-        description: 'Image filename (optional)'
-        required: false
-        default: 'default-announcement.jpg'
       thumbnail:
-        description: 'Image thumbnail (optional)'
+        description: 'Thumbnail'
         required: false
         default: default-mass-thumbnail.jpg
 
@@ -30,20 +26,8 @@ jobs:
     env:
       S3_PATH: 's3://web/church/hyvong'
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
       - name: Create markdown file
-        run: |
-          cat > ${{ github.event.inputs.slug }}.md << EOF
-          # ${{ github.event.inputs.title }}
-
-          ${{ github.event.inputs.content }}
-
-          ![Ảnh sự kiện](${{ github.event.inputs.image }})
-
-          *Hội Đồng Mục Vụ Giáo xứ Hy Vọng*
-          EOF
+        run: base64 -d -i ${{ github.event.inputs.content }} > ${{ github.event.inputs.slug }}.md
 
       - name: Configure AWS CLI
         run: |
@@ -67,10 +51,8 @@ jobs:
           with open('index.json', 'r', encoding='utf-8') as f:
               data = json.load(f)
           new_ann = {
-              'title': '${{ github.event.inputs.title }}',
               'date': date,
               'summary': '${{ github.event.inputs.summary }}',
-              'image': '${{ github.event.inputs.image }}',
               'thumbnail': '${{ github.event.inputs.thumbnail }}',
               'slug': '${{ github.event.inputs.slug }}'
           }
