@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import { MINIO_BASE } from '../utils/fetchIndex';
 
 export default function ActivitiesPage() {
   const activities = [
@@ -7,19 +8,19 @@ export default function ActivitiesPage() {
       title: 'Phân công đọc sách',
       description: 'Lịch phân công phục vụ sách Thánh trong các thánh lễ.',
       link: '/cac-hoat-dong/phan-cong-doc-sach',
-      image: '/photos/event1.compressed.jpg'
+      image: `${MINIO_BASE}/media/event1.jpg`
     },
     {
       title: 'Giờ lễ',
       description: 'Lịch giờ các thánh lễ hàng tuần.',
       link: '/gio-le',
-      image: '/photos/event2.compressed.jpg'
+      image: `${MINIO_BASE}/media/event2.jpg`
     },
     {
       title: 'Các hoạt động khác',
       description: 'Thông tin về các chương trình mục vụ, từ thiện, và sự kiện cộng đồng.',
       link: '#',
-      image: '/photos/event3.compressed.jpg'
+      image: `${MINIO_BASE}/media/event3.jpg`
     }
   ];
 
@@ -43,6 +44,7 @@ export default function ActivitiesPage() {
               width={300}
               height={200}
               className="w-full h-48 object-cover"
+              priority={idx === 0}
             />
             <div className="p-4">
               <h2 className="text-xl font-bold text-green-800 mb-2">{activity.title}</h2>

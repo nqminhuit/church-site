@@ -1,6 +1,7 @@
 'use client'
 
 import CalendarSection from '@/components/CalendarSection';
+import ImageModal from '@/components/ImageModal';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -11,6 +12,7 @@ export default function HomePage() {
   const [date, setDate] = useState(new Date());
   const [announcements, setAnnouncements] = useState([]);
   const [images, setImages] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [gospelOfTheDay, setGospelOfTheDay] = useState(null);
   const [liturgicalCalendar, setLiturgicalCalendar] = useState(null);
   const [lectionary, setLectionary] = useState(null);
@@ -51,7 +53,7 @@ export default function HomePage() {
         const sortedAnnouncements = data.announcements ? data.announcements.slice(0, 3) : [];
         setAnnouncements(sortedAnnouncements);
 
-        const sortedImages = data.images ? data.images.slice(0, 4) : [];
+        const sortedImages = data.images ? data.images.slice(0, 3) : [];
         setImages(sortedImages);
       })
       .catch(console.error);
@@ -169,15 +171,15 @@ export default function HomePage() {
             <h2 className="text-xl font-bold text-green-800 mb-4">📸 Hình ảnh mới</h2>
             <div className="flex flex-wrap gap-4">
               {images.map((item, idx) => (
-                <Image
-                  key={idx}
-                  src={`${MINIO_BASE}/media/${item.src}`}
-                  alt={item.alt}
-                  width={232}
-                  height={160}
-                  className="object-cover rounded shadow"
-                  priority={idx === 0}
-                />
+                <div key={idx} className="overflow-hidden rounded-lg hover:shadow-lg hover:scale-107 transition-all duration-300 cursor-pointer" onClick={() => setSelectedImage(item)}>
+                  <Image
+                    src={`${MINIO_BASE}/media/${item.src}`}
+                    alt={item.alt}
+                    width={230}
+                    height={0}
+                    priority={idx === 0}
+                  />
+                </div>
               ))}
             </div>
             <Link href="/hinh-anh" className="block mt-2 text-green-700 underline text-sm">Xem tất cả »</Link>
@@ -198,6 +200,8 @@ export default function HomePage() {
           <p className="text-sm text-gray-600">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
         </div>
       </div>
+
+      <ImageModal selectedImage={selectedImage} onClose={() => setSelectedImage(null)} />
     </div>
   );
 }

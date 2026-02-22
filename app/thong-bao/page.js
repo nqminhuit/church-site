@@ -76,15 +76,15 @@ export default function AnnouncementsPage() {
           disabled={currentPage === 1}
           className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
-          Previous
+          &lt;&lt;
         </button>
-        <span className="text-gray-700">Page {currentPage} of {totalPages}</span>
+        <span className="text-gray-700">Trang {currentPage} / {totalPages}</span>
         <button
           onClick={() => setCurrentPage(currentPage + 1)}
           disabled={currentPage === totalPages}
           className="px-4 py-2 bg-green-700 text-white rounded hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed"
         >
-          Next
+          &gt;&gt;
         </button>
       </div>
     </main>

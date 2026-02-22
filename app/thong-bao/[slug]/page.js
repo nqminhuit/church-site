@@ -11,7 +11,7 @@ export async function generateStaticParams() {
 }
 
 export default async function AnnouncementPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const res = await fetch(`${MINIO_BASE}/pages/${slug}.md?t=${Date.now()}`);
   if (!res.ok) {
     return (

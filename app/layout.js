@@ -53,7 +53,7 @@ export default function RootLayout({ children }) {
         </main>
 
         {/* Footer */}
-        <footer className="bg-gradient-to-t from-green-900 to-green-800 text-white text-sm py-8 mt-12 border-t border-green-600">
+        <footer className="bg-gradient-to-t from-green-700 to-green-900 text-white text-sm py-8 mt-12 border-t border-green-600">
           <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-6">
             <div>
               <p>&copy; {new Date().getFullYear()} Giáo xứ Hy Vọng. Mọi quyền được bảo lưu.</p>
