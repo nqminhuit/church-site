@@ -1,4 +1,4 @@
-const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
+export const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
 
 export const fetchIndexJson = async () => {
   const res = await fetch(`${MINIO_BASE}/index.json?t=${Date.now()}`);

@@ -2,12 +2,11 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { fetchIndexJson } from '../utils/fetchIndex';
+import { fetchIndexJson, MINIO_BASE } from '../utils/fetchIndex';
 
 export default function Page() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
-  const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
 
   useEffect(() => {
     fetchIndexJson()

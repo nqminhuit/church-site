@@ -3,18 +3,17 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { fetchIndexJson } from '../utils/fetchIndex';
+import { fetchIndexJson, MINIO_BASE } from '../utils/fetchIndex';
 
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);
 
-  const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
-
   useEffect(() => {
     fetchIndexJson()
       .then(data => {
-        // Assume data is array of {title, date, summary, image, slug}
-        setAnnouncements(data.announcements ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date)) : []);
+        setAnnouncements(data.announcements
+          ? data.announcements.sort((a, b) => new Date(b.date) - new Date(a.date))
+          : []);
       })
       .catch(console.error);
   }, []);
@@ -23,7 +22,7 @@ export default function AnnouncementsPage() {
     <main className="min-h-screen p-6 max-w-5xl mx-auto">
       {/* Hero Section */}
       <section className="text-center py-12 bg-gradient-to-b from-green-100 to-green-200 rounded-lg mb-8">
-        <h1 className="text-4xl font-bold text-green-800 mb-4">📢 Thông Báo</h1>
+        <h1 className="text-4xl font-bold text-green-800 mb-4">Thông Báo</h1>
         <p className="text-lg text-gray-700 max-w-2xl mx-auto">
           Cập nhật tin tức mới nhất và thông báo quan trọng từ Giáo xứ Hy Vọng.
         </p>
@@ -36,7 +35,7 @@ export default function AnnouncementsPage() {
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <Image
-                  src={MINIO_BASE + '/media/' + announcement.image}
+                  src={`${MINIO_BASE}/media/${announcement.image}`}
                   alt={announcement.title}
                   width={200}
                   height={150}
@@ -61,13 +60,6 @@ export default function AnnouncementsPage() {
             </div>
           </div>
         ))}
-      </section>
-
-      {/* Additional Info */}
-      <section className="mt-12 text-center">
-        <p className="text-gray-600">
-          Để nhận thông báo qua email, vui lòng liên hệ với giáo xứ hoặc đăng ký qua trang liên hệ.
-        </p>
       </section>
     </main>
   );

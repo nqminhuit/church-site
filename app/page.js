@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import CalendarSection from '@/components/CalendarSection';
 import 'react-calendar/dist/Calendar.css';
-import { fetchIndexJson } from './utils/fetchIndex';
+import { fetchIndexJson, MINIO_BASE } from './utils/fetchIndex';
 
 export default function HomePage() {
   const [date, setDate] = useState(new Date());
@@ -14,8 +14,6 @@ export default function HomePage() {
   const [gospelOfTheDay, setGospelOfTheDay] = useState(null);
   const [liturgicalCalendar, setLiturgicalCalendar] = useState(null);
   const [lectionary, setLectionary] = useState(null);
-
-  const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
 
   const getSundayLabel = (dayInfo) => {
     const seasons = {
@@ -177,7 +175,7 @@ export default function HomePage() {
               {images.map((item, idx) => (
                 <Image
                   key={idx}
-                  src={`${MINIO_BASE}/media/item.src`}
+                  src={`${MINIO_BASE}/media/${item.src}`}
                   alt={item.alt}
                   width={232}
                   height={160}

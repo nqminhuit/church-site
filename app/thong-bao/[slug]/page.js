@@ -1,8 +1,6 @@
 import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
-import { fetchIndexJson } from '../../utils/fetchIndex';
-
-const MINIO_BASE = 'https://s3-api.prud.uk/web/church/hyvong';
+import { fetchIndexJson, MINIO_BASE } from '../../utils/fetchIndex';
 
 // This function tells Next.js which dynamic routes to pre-render at build time
 export async function generateStaticParams() {
