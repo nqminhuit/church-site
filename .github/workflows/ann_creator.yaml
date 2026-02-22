@@ -1,0 +1,74 @@
+name: Create Announcement
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Title of the announcement'
+        required: true
+      content:
+        description: 'Content of the announcement'
+        required: true
+      slug:
+        description: 'Part at the end of a web address that identifies and describes a specific page'
+        required: true
+      summary:
+        description: 'Summary for the announcement'
+        required: true
+      image:
+        description: 'Image filename (optional)'
+        required: false
+        default: 'default-announcement.jpg'
+
+jobs:
+  create-ann:
+    runs-on: ubuntu-latest
+    env:
+      S3_PATH: 's3://web/church/hyvong'
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create markdown file
+        run: |
+          cat > ${{ github.event.inputs.slug }}.md << EOF
+          # ${{ github.event.inputs.title }}
+
+          ${{ github.event.inputs.content }}
+          EOF
+
+      - name: Configure AWS CLI
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.HOMELAB_MINIO_ACCESS_KEY }}
+          aws configure set aws_secret_access_key ${{ secrets.HOMELAB_MINIO_SECRET_KEY }}
+          aws configure set region us-east-1
+          aws configure set endpoint_url ${{ secrets.HOMELAB_MINIO_ENDPOINT_URL }}
+
+      - name: Upload markdown to MinIO
+        run: aws s3 cp ${{ github.event.inputs.slug }}.md ${S3_PATH}/pages/
+
+      - name: Download index.json from MinIO
+        run: aws s3 cp ${S3_PATH}/index.json ./index.json
+
+      - name: Append new announcement to index.json
+        run: |
+          python3 -c "
+          import json
+          import datetime
+          date = datetime.datetime.now().strftime('%Y-%m-%d')
+          with open('index.json', 'r', encoding='utf-8') as f:
+              data = json.load(f)
+          new_ann = {
+              'title': '${{ github.event.inputs.title }}',
+              'date': date,
+              'summary': '${{ github.event.inputs.summary }}',
+              'image': '${{ github.event.inputs.image }}',
+              'slug': '${{ github.event.inputs.slug }}'
+          }
+          data['announcements'].append(new_ann)
+          with open('index.json', 'w', encoding='utf-8') as f:
+              json.dump(data, f, indent=2, ensure_ascii=False)
+          "
+
+      - name: Upload updated index.json to MinIO
+        run: aws s3 cp index.json ${S3_PATH}/
