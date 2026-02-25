@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { MINIO_BASE } from '@/utils/fetchIndex';
+import { ASSETS_BASE } from '@/utils/fetchIndex';
 
 export default function HistoryPage() {
   return (
@@ -121,7 +121,7 @@ export default function HistoryPage() {
       <section className="grid md:grid-cols-2 gap-8 mb-8">
         <div>
           <Image
-            src={`${MINIO_BASE}/media/event2.jpg`}
+            src={`${ASSETS_BASE}/event2.jpg`}
             alt="Sự kiện lễ đặt viên đá xây dựng nhà thờ năm 2003"
             width={400}
             height={0}

@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { MINIO_BASE } from '@/utils/fetchIndex';
+import { ASSETS_BASE } from '@/utils/fetchIndex';
 
 export default function ActivitiesPage() {
   const activities = [
@@ -8,19 +8,19 @@ export default function ActivitiesPage() {
       title: 'Phân công đọc sách',
       description: 'Lịch phân công phục vụ sách Thánh trong các thánh lễ.',
       link: '/cac-hoat-dong/phan-cong-doc-sach',
-      image: `${MINIO_BASE}/media/event1.jpg`
+      image: `${ASSETS_BASE}/event1.jpg`
     },
     {
       title: 'Giờ lễ',
       description: 'Lịch giờ các thánh lễ hàng tuần.',
       link: '/gio-le',
-      image: `${MINIO_BASE}/media/event2.jpg`
+      image: `${ASSETS_BASE}/event2.jpg`
     },
     {
       title: 'Các hoạt động khác',
       description: 'Thông tin về các chương trình mục vụ, từ thiện, và sự kiện cộng đồng.',
       link: '#',
-      image: `${MINIO_BASE}/media/event3.jpg`
+      image: `${ASSETS_BASE}/event3.jpg`
     }
   ];
 
