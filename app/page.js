@@ -2,11 +2,11 @@
 
 import CalendarSection from '@/components/CalendarSection';
 import ImageModal from '@/components/ImageModal';
+import { ASSETS_BASE, fetchAnnouncements, fetchPhotos, MEDIA_BASE } from '@/utils/fetchIndex';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
-import { fetchAnnouncements, fetchPhotos, MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function HomePage() {
   const topItemsCount = 3;
@@ -99,7 +99,7 @@ export default function HomePage() {
       {/* Banner on top across full width */}
       <section className="text-center py-6 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden animate-[fadeIn_1s_ease-out_forwards]">
         <Image
-          src={`${MINIO_BASE}/media/main_banner.jpg`}
+          src={`${ASSETS_BASE}/main_banner.jpg`}
           alt="Giáo xứ Hy Vọng community gathering"
           width={500}
           height={0}
@@ -172,7 +172,7 @@ export default function HomePage() {
               {images.map((item, idx) => (
                 <div key={idx} className="overflow-hidden rounded-lg hover:shadow-lg hover:scale-107 transition-all duration-300 cursor-pointer" onClick={() => setSelectedImage(item)}>
                   <Image
-                    src={`${MINIO_BASE}/media/${item.src}`}
+                    src={`${MEDIA_BASE}/${item.src}`}
                     alt={item.alt}
                     width={230}
                     height={0}

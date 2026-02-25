@@ -1,6 +1,6 @@
+import { ASSETS_BASE, fetchAnnouncements, PAGES_BASE } from '@/utils/fetchIndex';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
-import { fetchAnnouncements, MINIO_BASE } from '@/utils/fetchIndex';
 import rehypeRaw from 'rehype-raw';
 
 // This function tells Next.js which dynamic routes to pre-render at build time
@@ -13,7 +13,7 @@ export async function generateStaticParams() {
 
 export default async function AnnouncementPage({ params }) {
   const { slug } = await params;
-  const res = await fetch(`${MINIO_BASE}/pages/${slug}.md?t=${Date.now()}`);
+  const res = await fetch(`${PAGES_BASE}/${slug}.md?t=${Date.now()}`);
   if (!res.ok) {
     return (
       <div className="max-w-4xl mx-auto px-4 py-8">
@@ -36,15 +36,12 @@ export default async function AnnouncementPage({ params }) {
           li: ({ children }) => <li className="leading-relaxed">{children}</li>,
           blockquote: ({ children }) => <blockquote className="border-l-4 border-green-600 pl-4 italic text-gray-600 mb-4">{children}</blockquote>,
           a: ({ href, children }) => <a href={href} className="text-green-700 underline hover:text-green-800" target="_blank" rel="noopener noreferrer">{children}</a>,
-          img: ({ src, alt }) => {
-            const fullSrc = src.startsWith('http') ? src : `${MINIO_BASE}/media/${src}`;
-            return <Image
-              src={fullSrc}
-              alt={alt}
-              className="max-w-full h-auto rounded-lg shadow-md my-4"
-              width={1700}
-              height={0} />;
-          },
+          img: ({ src, alt }) => <Image
+            src={src.startsWith('http') ? src : `${ASSETS_BASE}/${src}`}
+            alt={alt}
+            className="max-w-full h-auto rounded-lg shadow-md my-4"
+            width={1700}
+            height={0} />,
           code: ({ children }) => <code className="bg-gray-100 px-1 py-0.5 rounded text-sm">{children}</code>,
           pre: ({ children }) => <pre className="bg-gray-100 p-4 rounded overflow-x-auto mb-4">{children}</pre>,
           sub: ({ children }) => <sub className="text-xs align-sub text-gray-500">{children}</sub>,

@@ -1,9 +1,9 @@
 'use client'
 
 import ImageModal from '@/components/ImageModal';
+import { fetchPhotos, MEDIA_BASE } from '@/utils/fetchIndex';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { fetchPhotos, MINIO_BASE } from '@/utils/fetchIndex';
 
 export default function Page() {
   const [images, setImages] = useState([]);
@@ -20,7 +20,7 @@ export default function Page() {
         {images.map((image, idx) => (
           <div key={idx} className="overflow-hidden rounded-lg hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer" onClick={() => setSelectedImage(image)}>
             <Image
-              src={`${MINIO_BASE}/media/${image.src}`}
+              src={`${MEDIA_BASE}/${image.src}`}
               alt={image.alt}
               width={300}
               height={0}

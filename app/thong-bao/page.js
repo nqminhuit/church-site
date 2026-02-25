@@ -1,9 +1,9 @@
 'use client'
 
+import { ASSETS_BASE, fetchAnnouncements } from '@/utils/fetchIndex';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { fetchAnnouncements, MINIO_BASE } from '@/utils/fetchIndex';
+import { useEffect, useState } from 'react';
 
 export default function AnnouncementsPage() {
   const [announcements, setAnnouncements] = useState([]);
@@ -36,7 +36,7 @@ export default function AnnouncementsPage() {
             <div className="md:flex">
               <div className="md:flex-shrink-0">
                 <Image
-                  src={`${MINIO_BASE}/media/${announcement.thumbnail}`}
+                  src={`${ASSETS_BASE}/${announcement.thumbnail}`}
                   alt={announcement.thumbnail}
                   width={0}
                   height={0}
