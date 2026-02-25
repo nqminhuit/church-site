@@ -121,7 +121,7 @@ export default function HistoryPage() {
       <section className="grid md:grid-cols-2 gap-8 mb-8">
         <div>
           <Image
-            src={`${ASSETS_BASE}/event2.jpg`}
+            src={`${ASSETS_BASE}/historic.jpg`}
             alt="Sự kiện lễ đặt viên đá xây dựng nhà thờ năm 2003"
             width={400}
             height={0}
@@ -138,17 +138,6 @@ export default function HistoryPage() {
             Chúng tôi tin rằng, với sự ủng hộ của cộng đoàn, Giáo xứ Hy Vọng sẽ tiếp tục là ngọn hải đăng của niềm tin và hy vọng.
           </p>
         </div>
-      </section>
-
-      {/* Sources */}
-      <section className="mb-8">
-        <h2 className="text-2xl font-bold text-green-800 mb-6">Nguồn tham khảo</h2>
-        <p className="text-gray-700 leading-relaxed mb-4">Thông tin lịch sử được lấy từ các nguồn uy tín của Giáo hội Công giáo:</p>
-        <ul className="list-disc list-inside text-gray-700">
-          <li><a href="https://sotayconggiao.com/nhatho/gio-le-nha-tho-hy-vong-q-tan-binh/" className="underline text-green-600">Sổ Tay Công Giáo - Giờ lễ Nhà Thờ Hy Vọng (Q. Tân Bình)</a></li>
-          <li><a href="https://tgpsaigon.net/gioi-thieu-giao-xu/hy-vong-913" className="underline text-green-600">Tổng Giáo Phận Sài Gòn - Giới thiệu Giáo xứ Hy Vọng</a></li>
-          <li><a href="https://tgpsaigon.net/bai-viet/giao-xu-hy-vong-chua-thanh-than-lai-den-33671" className="underline text-green-600">Tổng Giáo Phận Sài Gòn - Sự kiện lễ Thêm Sức 2024</a></li>
-        </ul>
       </section>
     </main>
   );
