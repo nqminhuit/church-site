@@ -8,6 +8,24 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 
+const seasons = {
+  advent: 'Mùa Vọng',
+  christmas: 'Mùa Giáng Sinh',
+  ordinary: 'Mùa Thường Niên',
+  lent: 'Mùa Chay',
+  easter: 'Mùa Phục Sinh'
+};
+
+const weekdays = {
+  sun: 'Chúa Nhật',
+  mon: 'Thứ Hai',
+  tue: 'Thứ Ba',
+  wed: 'Thứ Tư',
+  thu: 'Thứ Năm',
+  fri: 'Thứ Sáu',
+  sat: 'Thứ Bảy'
+};
+
 export default function HomePage() {
   const topItemsCount = 3;
   const [date, setDate] = useState(new Date());
@@ -16,25 +34,13 @@ export default function HomePage() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [gospelOfTheDay, setGospelOfTheDay] = useState(null);
   const [liturgicalCalendar, setLiturgicalCalendar] = useState(null);
+  const [vnLiturgicalCalendar, setVnLiturgicalCalendar] = useState(null);
   const [lectionary, setLectionary] = useState(null);
 
   const getSundayLabel = (dayInfo) => {
-    const seasons = {
-      advent: 'Mùa Vọng',
-      christmas: 'Mùa Giáng Sinh',
-      ordinary: 'Mùa Thường Niên',
-      lent: 'Mùa Chay',
-      easter: 'Mùa Phục Sinh'
-    };
-    const weekdays = {
-      sun: 'Chúa Nhật',
-      mon: 'Thứ Hai',
-      tue: 'Thứ Ba',
-      wed: 'Thứ Tư',
-      thu: 'Thứ Năm',
-      fri: 'Thứ Sáu',
-      sat: 'Thứ Bảy'
-    };
+    if (dayInfo.name) {
+      return dayInfo.name;
+    }
     if (dayInfo.week_of_season === 0) {
       return `
         ${weekdays[dayInfo.weekday]}
@@ -60,11 +66,13 @@ export default function HomePage() {
     // const currentYear = new Date().getFullYear();
     const currentYear = date.getFullYear();
     Promise.all([
+      fetch(`https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/liturgical-calendar-${currentYear}-vietnam.json`),
       fetch(`https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/liturgical-calendar-${currentYear}.json`),
       fetch('https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/lectionary.json')
     ])
-      .then(([calRes, lecRes]) => Promise.all([calRes.json(), lecRes.json()]))
-      .then(([calData, lecData]) => {
+      .then(([vnCal, calRes, lecRes]) => Promise.all([vnCal.json(), calRes.json(), lecRes.json()]))
+      .then(([vnData, calData, lecData]) => {
+        setVnLiturgicalCalendar(vnData);
         setLiturgicalCalendar(calData);
         setLectionary(lecData);
       })
@@ -75,7 +83,8 @@ export default function HomePage() {
   useEffect(() => {
     if (liturgicalCalendar && lectionary) {
       const selectedDate = date.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
-      const dayInfo = liturgicalCalendar[selectedDate];
+      const dayInfo = vnLiturgicalCalendar[selectedDate] || liturgicalCalendar[selectedDate];
+      console.log('Selected Date:', selectedDate, 'Day Info:', dayInfo);
       if (dayInfo) {
         const reading = lectionary.readings[dayInfo.lectionary_key];
         if (reading && reading.gospel) {
@@ -92,7 +101,7 @@ export default function HomePage() {
         setGospelOfTheDay(null);
       }
     }
-  }, [liturgicalCalendar, lectionary, date]);
+  }, [vnLiturgicalCalendar, liturgicalCalendar, lectionary, date]);
 
   return (
     <div className="space-y-12">

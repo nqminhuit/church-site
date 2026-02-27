@@ -122,7 +122,7 @@ export default function HistoryPage() {
         <div>
           <Image
             src={`${ASSETS_BASE}/historic.jpg`}
-            alt="Sự kiện lễ đặt viên đá xây dựng nhà thờ năm 2003"
+            alt="history image"
             width={400}
             height={0}
             className="rounded-lg shadow-md object-cover"
