@@ -33,63 +33,63 @@ export default function HistoryPage() {
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">1957</div>
             <div className="ml-4">
               <h3 className="text-lg font-semibold">Thành lập Giáo xứ ban đầu</h3>
-              <p className="text-gray-600">Giáo xứ Hy Vọng được thành lập bởi Cha Giuse Nguyễn Hưng với 2700 giáo dân, thánh đường đơn sơ bằng vật liệu nhẹ. Trong thời gian từ 1957-1965 trải qua ba đời linh mục coi sóc: Cha Giuse Nguyễn Hưng, Cha Lê Quang Kế, Cha Nguyễn Bá Chấn, với giáo dân phát triển mạnh.</p>
+              <p className="text-gray-600">Giáo xứ Hy Vọng được Cha Giuse Nguyễn Hưng thành lập với khoảng 2700 giáo dân, ngôi thánh đường ban đầu còn đơn sơ, làm bằng vật liệu nhẹ. Từ năm 1957 đến 1965, giáo xứ trải qua ba đời linh mục coi sóc: Cha Giuse Nguyễn Hưng, Cha Lê Quang Kế và Cha Nguyễn Bá Chấn; đời sống đức tin của giáo dân thời kỳ này phát triển mạnh.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">1965</div>
             <div className="ml-4">
               <h3 className="text-lg font-semibold">Di tản và sát nhập</h3>
-              <p className="text-gray-600">Đời sống kinh tế giáo dân mỗi ngày khó khăn hơn, vùng đất ao tù nước đọng phèn chua. Từ 1965-1966, nhiều giáo dân di tản đi Long Khánh, Biên Hòa, Cần Thơ và các nơi khác. Giáo xứ ngừng hoạt động và sát nhập vào Giáo xứ Tân Việt.</p>
+              <p className="text-gray-600">Điều kiện kinh tế ngày càng khó khăn, vùng đất nhiễm phèn, ao tù nước đọng khiến nhiều giáo dân phải di dời. Trong giai đoạn 1965–1966, giáo dân chuyển đến Long Khánh, Biên Hòa, Cần Thơ và nhiều nơi khác. Sinh hoạt giáo xứ tạm ngưng và được sáp nhập vào Giáo xứ Tân Việt.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">1975</div>
             <div className="ml-4">
               <h3 className="text-lg font-semibold">Hồi hương</h3>
-              <p className="text-gray-600">Năm 1975 dân chúng lại hồi hương một số đi kinh tế mới, cộng đoàn giáo dân còn lại 79 người. Vì thế, thời gian này nhà thờ chỉ còn sinh hoạt vào ngày Chúa nhật.</p>
+              <p className="text-gray-600">Sau năm 1975, một số gia đình trở về hoặc đi lập nghiệp tại các vùng kinh tế mới; cộng đoàn còn lại 79 người. Từ đó, sinh hoạt phụng vụ chỉ duy trì vào các ngày Chúa nhật.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">1979</div>
             <div className="ml-4">
               <h3 className="text-lg font-semibold">Trở thành họ đạo</h3>
-              <p className="text-gray-600">Đến cuối năm 1979, giáo xứ chính thức trở thành họ đạo của Giáo xứ Nhân Hòa với 21 gia đình và 131 giáo dân, với ngôi nhà thờ xiêu vẹo dột nát nền trũng sâu. Ban chấp hành giáo họ được thành lập. Trong thời gian này, cha sở Nhân Hòa có nhờ các cha Giuse Trần Văn Phước, Giuse Trịnh Văn Thậm, Giuse Phượng và Phaolô Võ Văn Bộ đến dâng Thánh lễ vào chiều thứ Bảy và ngày Chúa nhật.</p>
+              <p className="text-gray-600">Cuối năm 1979, cộng đoàn chính thức trở thành họ đạo trực thuộc Giáo xứ Nhân Hòa với 21 gia đình, 131 giáo dân. Ngôi nhà thờ khi ấy xuống cấp, nền thấp và dột nát. Ban chấp hành giáo họ được thành lập; các cha Giuse Trần Văn Phước, Giuse Trịnh Văn Thậm, Giuse Phượng và Phaolô Võ Văn Bộ được mời đến dâng Thánh lễ vào chiều thứ Bảy và Chúa nhật.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">1998</div>
             <div className="ml-4">
-              <h3 className="text-lg font-semibold">Cha linh hướng</h3>
-              <p className="text-gray-600">Ngày 19-12-1998 để ổn định, cha sở Nhân Hòa mời cha cố Tôma Trần Quốc Phú nghỉ hưu làm cha linh hướng cho họ đạo. Nhờ cha thường xuyên ở với họ đạo, các đoàn thể và cộng đoàn mỗi ngày phát triển mạnh mẽ.</p>
+              <h3 className="text-lg font-semibold">Cha linh hướng đồng hành</h3>
+              <p className="text-gray-600">Ngày 19-12-1998, nhằm ổn định đời sống mục vụ, cha sở Nhân Hòa mời cha cố Tôma Trần Quốc Phú nghỉ hưu về làm cha linh hướng. Sự hiện diện thường xuyên của ngài góp phần củng cố các đoàn thể và thúc đẩy sinh hoạt cộng đoàn phát triển.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">2003</div>
             <div className="ml-4">
-              <h3 className="text-lg font-semibold">Lễ đặt viên đá và nâng giáo xứ</h3>
-              <p className="text-gray-600">Vào năm 2002, cha sở, cha cố cùng toàn thể giáo dân quyết định mua thửa đất tiếp nối phía sau để xây dựng Thánh Đường. Ngày 23-03-2003, Đức cha Phêrô Trần Đình Tứ giáo phận Phú Cường, cha sở Giuse Nguyễn Thiện Toàn cùng cha cố Tôma Trần Quốc Phú và toàn thể cộng đoàn cử hành nghi lễ đặt viên đá đầu tiên xây dựng Thánh Đường. Ngày khánh thành Thánh Đường cũng là ngày giáo họ được nâng lên hàng giáo xứ với tổng số giáo dân khoảng 3000 người.</p>
+              <h3 className="text-lg font-semibold">Đặt viên đá xây dựng và nâng lên giáo xứ</h3>
+              <p className="text-gray-600">Năm 2002, cha sở, cha cố cùng giáo dân quyết định mua thêm đất phía sau để xây dựng thánh đường mới. Ngày 23-03-2003, Đức cha Phêrô Trần Đình Tứ (Giáo phận Phú Cường) chủ sự nghi thức đặt viên đá đầu tiên, cùng cha sở Giuse Nguyễn Thiện Toàn, cha cố Tôma Trần Quốc Phú và toàn thể cộng đoàn. Khi thánh đường được khánh thành, giáo họ chính thức được nâng lên hàng giáo xứ với khoảng 3000 giáo dân.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">2008</div>
             <div className="ml-4">
-              <h3 className="text-lg font-semibold">Cha Vinh Sơn Trần Quốc Sử quản nhiệm</h3>
-              <p className="text-gray-600">Tiếp tục sứ mạng với Cha Vinh Sơn Trần Quốc Sử quản nhiệm từ 2008, cộng đoàn mạnh mẽ với khoảng 900 gia đình, trên 3000 nhân danh (chưa kể 1000 nhập cư).</p>
+              <h3 className="text-lg font-semibold">Thời kỳ cha Vinh Sơn Trần Quốc Sử quản nhiệm</h3>
+              <p className="text-gray-600">Từ năm 2008, dưới sự hướng dẫn của Cha Vinh Sơn Trần Quốc Sử, giáo xứ tiếp tục được củng cố và mở rộng. Cộng đoàn đạt khoảng 900 gia đình với hơn 3000 giáo dân, chưa kể số giáo dân nhập cư.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">2019</div>
             <div className="ml-4">
               <h3 className="text-lg font-semibold">Cha Gioan Baotixita Nguyễn Ngọc Tân quản nhiệm</h3>
-              <p className="text-gray-600">Tiếp tục sứ mạng với Cha Gioan Baotixita Nguyễn Ngọc Tân quản nhiệm từ 2019, cộng đoàn mạnh mẽ với các hoạt động phong phú.</p>
+              <p className="text-gray-600">Từ năm 2019, Cha Gioan Baotixita Nguyễn Ngọc Tân đảm nhận trách nhiệm mục vụ, thúc đẩy nhiều hoạt động sinh hoạt và phục vụ, góp phần làm đời sống giáo xứ thêm phong phú.</p>
             </div>
           </div>
           <div className="flex items-center">
             <div className="flex-shrink-0 w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold">2025</div>
             <div className="ml-4">
               <h3 className="text-lg font-semibold">Cha quản nhiệm Giuse Đỗ Quốc Huy</h3>
-              <p className="text-gray-600">Tiếp tục sứ mạng với Cha quản nhiệm Giuse Đỗ Quốc Huy từ tháng 9/2025 đến nay, cộng đoàn mạnh mẽ với các hoạt động phong phú. Gần đây, giáo xứ tổ chức các sự kiện như ...</p>
+              <p className="text-gray-600">Từ tháng 9 năm 2025, Cha Giuse Đỗ Quốc Huy tiếp nhận sứ vụ quản nhiệm. Giáo xứ tiếp tục duy trì các hoạt động mục vụ, bác ái và sinh hoạt đoàn thể; gần đây còn tổ chức nhiều sự kiện cộng đoàn, góp phần xây dựng đời sống đức tin ngày càng bền vững.</p>
             </div>
           </div>
         </div>
@@ -109,7 +109,7 @@ export default function HistoryPage() {
           <li><strong>Cha Giuse Trịnh Văn Thậm</strong> (hỗ trợ từ Giáo xứ Nhân Hòa).</li>
           <li><strong>Cha Giuse Phượng</strong> (hỗ trợ từ Giáo xứ Nhân Hòa).</li>
           <li><strong>Cha Phaolô Võ Văn Bộ</strong> (hỗ trợ từ Giáo xứ Nhân Hòa).</li>
-          <li><strong>Cha cố Tôma Trần Quốc Phú</strong> (1998 trở đi, cha linh hướng nghỉ hưu).</li>
+          <li><strong>Cha Tôma Trần Quốc Phú</strong> (1998 trở đi, cha linh hướng nghỉ hưu).</li>
           <li><strong>Cha Giuse Nguyễn Thiện Toàn</strong> (2003, cha sở trong lễ đặt viên đá).</li>
           <li><strong>Cha Vinh Sơn Trần Quốc Sử</strong> (2008, quản nhiệm).</li>
           <li><strong>Cha Gioan Baotixita Nguyễn Ngọc Tân</strong> (2019, quản nhiệm).</li>
