@@ -4,16 +4,12 @@ import { ASSETS_BASE } from '@/utils/fetchIndex';
 
 export const metadata = {
   title: 'Caritas Giáo xứ Hy Vọng',
-  description:
-    'Caritas Giáo xứ Hy Vọng - hoạt động từ thiện và hỗ trợ cộng đồng. Tham gia cùng chúng tôi để phục vụ người nghèo và cần giúp đỡ.',
-  openGraph: {
-    images: ['/images/caritas-og.jpg'],
-  },
+  description: 'Caritas Giáo xứ Hy Vọng - hoạt động từ thiện và hỗ trợ cộng đồng. Tham gia cùng chúng tôi để phục vụ người nghèo và cần giúp đỡ.',
 };
 
 export default function CaritasPage() {
   return (
-    <main className="container mx-auto px-4 py-8" aria-label="Caritas page">
+    <div className="container mx-auto px-4 py-8" aria-label="Caritas page">
       <header className="mb-8">
         <h1 className="text-3xl font-bold">❤️ Caritas Giáo xứ Hy Vọng</h1>
         <p className="mt-2 text-gray-700">
@@ -73,9 +69,11 @@ export default function CaritasPage() {
       <section id="contact-form" className="mb-12" aria-label="contact form">
         <h2 className="text-2xl font-semibold">Liên hệ</h2>
         <p className="mt-2 text-gray-700">Vui lòng gửi thông tin liên hệ hoặc lời nhắn — chúng tôi sẽ phản hồi sớm nhất có thể.</p>
-        <div className="mt-4"> <ContactForm /></div>
+        <div className="mt-4 max-w-md">
+          <ContactForm />
+        </div>
       </section>
 
-    </main>
+    </div>
   );
 }

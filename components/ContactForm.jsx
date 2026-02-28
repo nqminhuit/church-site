@@ -52,7 +52,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-xl bg-white p-6 rounded shadow-lg" aria-label="contact form">
+    <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-lg" aria-label="contact form">
       {
         /* Honeypot - is a simple anti-bot trick:
              you add a form field that normal users never see or interact with,
@@ -120,7 +120,7 @@ export default function ContactForm() {
         {errors.message && <p id="message-error" className="mt-1 text-sm text-red-600">{errors.message}</p>}
       </div>
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-center justify-end gap-3">
         <button
           type="submit"
           disabled={status.loading}
