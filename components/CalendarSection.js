@@ -10,7 +10,7 @@ export default function CalendarSection({date, onChange}) {
         onChange={onChange}
         value={date}
         calendarType='gregory'
-        formatMonthYear={(locale, date) => `${date.toLocaleDateString('en-GB', {
+        formatMonthYear={(_, date) => `${date.toLocaleDateString('en-GB', {
           timeZone: 'Asia/Ho_Chi_Minh',
           month: '2-digit',
           year: 'numeric',
