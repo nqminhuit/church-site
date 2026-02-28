@@ -1,12 +1,11 @@
-import Link from 'next/link';
-import ErrorBoundary from '@/components/ErrorBoundary';
 import BackToTop from '@/components/BackToTop';
-import TestServerBanner from '@/components/TestServerBanner';
-import './globals.css';
-
+import ErrorBoundary from '@/components/ErrorBoundary';
 import MobileNav from '@/components/MobileNav';
 import NavLinks from '@/components/NavLinks';
+import TestServerBanner from '@/components/TestServerBanner';
 import { navItems } from '@/components/nav-items';
+import Link from 'next/link';
+import './globals.css';
 
 export const metadata = {
   title: 'Giáo xứ Hy Vọng',
