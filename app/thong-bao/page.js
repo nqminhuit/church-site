@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-const SKELETON_MIN_DELAY = 1234;
+const SKELETON_MIN_DELAY = 333;
 
 function AnnouncementSkeleton() {
   return (
