@@ -42,7 +42,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build test
+      - name: Build test environment
         run: npm run build-test
 
       - name: Generate timestamp
@@ -58,7 +58,7 @@ jobs:
 
       - name: Ensure remote directory exists
         run: |
-          ssh -vvv -4 -p ${{ secrets.HOMELAB_PORT }} \
+          ssh -4 -p ${{ secrets.HOMELAB_PORT }} \
             ${{ secrets.HOMELAB_USER }}@${{ secrets.HOMELAB_HOST }} \
             "mkdir -p '${{ secrets.HOMELAB_HYVONG_PATH }}/${{ env.TIMESTAMP }}'"
 
