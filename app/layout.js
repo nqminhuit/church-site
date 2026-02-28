@@ -40,7 +40,7 @@ export default function RootLayout({ children }) {
         </header>
 
         {/* Main content */}
-        <main className="max-w-6xl mx-auto px-4 py-6 flex-grow">
+        <main className="w-full max-w-6xl mx-auto px-4 py-6 flex-grow">
           <ErrorBoundary>
             {children}
           </ErrorBoundary>
