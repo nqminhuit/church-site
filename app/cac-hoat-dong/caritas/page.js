@@ -56,7 +56,7 @@ export default function CaritasPage() {
         <div className="mt-4 space-y-4">
           <div>
             <h3 className="font-semibold">Làm sao để tham gia làm tình nguyện?</h3>
-            <p className="text-gray-700">Bạn có thể nhấn nút 'Tôi muốn tình nguyện' hoặc điền vào form liên hệ bên dưới. Chúng tôi sẽ liên hệ lại với bạn để hướng dẫn.</p>
+            <p className="text-gray-700">Bạn có thể đến gặp trực tiếp Hội Đồng Mục Vụ giáo xứ hoặc điền vào form liên hệ bên dưới. Chúng tôi sẽ liên hệ lại với bạn để hướng dẫn.</p>
           </div>
           <div>
             <h3 className="font-semibold">Caritas hỗ trợ những đối tượng nào?</h3>
