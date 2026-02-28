@@ -84,7 +84,6 @@ export default function HomePage() {
     if (liturgicalCalendar && lectionary) {
       const selectedDate = date.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
       const dayInfo = vnLiturgicalCalendar[selectedDate] || liturgicalCalendar[selectedDate];
-      console.log('Selected Date:', selectedDate, 'Day Info:', dayInfo);
       if (dayInfo) {
         const reading = lectionary.readings[dayInfo.lectionary_key];
         if (reading && reading.gospel) {

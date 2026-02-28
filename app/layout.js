@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ErrorBoundary from '@/components/ErrorBoundary';
 import BackToTop from '@/components/BackToTop';
+import TestServerBanner from '@/components/TestServerBanner';
 import './globals.css';
 
 export const metadata = {
@@ -15,6 +16,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="vi">
       <body className="font-sans flex flex-col min-h-screen">
+        <TestServerBanner />
+
         {/* Header */}
         <header className="bg-green-700 text-white shadow-md">
           <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
