@@ -67,14 +67,6 @@ export default function RootLayout({ children }) {
             </div>
             <div className="text-left md:text-right">
               <p className="mt-2 flex items-center justify-start md:justify-end">
-                <span className="mr-2">📧</span>
-                <a href="mailto:giaoxuhyvong@gmail.com" className="underline hover:text-green-200">Email: giaoxuhyvong@gmail.com</a>
-              </p>
-              <p className="mt-2 flex items-center justify-start md:justify-end">
-                <span className="mr-2">📱</span>
-                <a href="tel:+842838151700" className="underline hover:text-green-200">Điện thoại: (+84) 28 3815 1700</a>
-              </p>
-              <p className="mt-2 flex items-center justify-start md:justify-end">
                 <span className="mr-2">🔗</span>
                 <Link href="/lien-he" className="underline hover:text-green-200">Xem chi tiết liên hệ</Link>
               </p>
