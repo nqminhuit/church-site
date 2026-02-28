@@ -1,11 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "", hp: "" });
   const [errors, setErrors] = useState({});
-  const [status, setStatus] = useState({ loading: false, success: null, error: null });
+  const [status, setStatus] = useState({ loading: false });
+  const [toast, setToast] = useState(null); // { type: 'success' | 'error', message: string }
+
+  useEffect(() => {
+    if (!toast) {
+      return;
+    }
+    const timer = setTimeout(() => setToast(null), 4000);
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   function validate() {
     const e = {};
@@ -33,22 +42,32 @@ export default function ContactForm() {
     // Send
     setStatus({ loading: true, success: null, error: null });
 
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+    // simulation, until we have a real backend for this
+    setTimeout(() => {
+      setStatus({ loading: false });
+      setToast({
+        type: 'success',
+        message: 'Gửi thành công. Cảm ơn bạn!',
       });
-      const data = await res.json();
-      if (res.ok && data.success) {
-        setStatus({ loading: false, success: 'Gửi thành công. Cảm ơn bạn!', error: null });
-        setForm({ name: '', email: '', phone: '', message: '', hp: '' });
-      } else {
-        setStatus({ loading: false, success: null, error: data.error || 'Đã có lỗi xảy ra.' });
-      }
-    } catch (err) {
-      setStatus({ loading: false, success: null, error: err.message || 'Network error' });
-    }
+      setForm({ name: '', email: '', phone: '', message: '', hp: '' });
+    }, 1234)
+
+    // try {
+    //   const res = await fetch('/api/contact', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(form),
+    //   });
+    //   const data = await res.json();
+    //   if (res.ok && data.success) {
+    //     setStatus({ loading: false, success: 'Gửi thành công. Cảm ơn bạn!', error: null });
+    //     setForm({ name: '', email: '', phone: '', message: '', hp: '' });
+    //   } else {
+    //     setStatus({ loading: false, success: null, error: data.error || 'Đã có lỗi xảy ra.' });
+    //   }
+    // } catch (err) {
+    //   setStatus({ loading: false, success: null, error: err.message || 'Network error' });
+    // }
   }
 
   return (
@@ -64,6 +83,16 @@ export default function ContactForm() {
         <label htmlFor="hp">hp</label>
         <input id="hp" name="hp" value={form.hp} onChange={(e) => setForm({ ...form, hp: e.target.value })} />
       </div>
+
+      {toast && (
+        <div
+          className={`fixed top-6 right-6 z-50 px-5 py-3 rounded-lg shadow-xl
+                      text-white transform transition-all duration-300
+                      ${toast.type === 'success' ? 'bg-blue-600' : 'bg-red-600'}`}
+        >
+          {toast.message}
+        </div>
+      )}
 
       <div className="mb-4">
         <label htmlFor="name" className="block text-sm font-medium">Tên *</label>
@@ -128,8 +157,6 @@ export default function ContactForm() {
         >
           {status.loading ? 'Đang gửi…' : 'Gửi liên hệ'}
         </button>
-        {status.success && <p className="text-green-600">{status.success}</p>}
-        {status.error && <p className="text-red-600">{status.error}</p>}
       </div>
     </form>
   );

@@ -7,7 +7,7 @@ export default function ContactInfo() {
     <div className="w-full mx-auto px-4 py-8" aria-label="Liên hệ">
       <h1 className="text-3xl font-bold text-green-800 text-center mb-6">Liên hệ</h1>
 
-      <div className="flex flex-col md:flex-row gap-18">
+      <div className="flex flex-col md:flex-row gap-8">
         <section className="bg-white space-y-4 md:w-1/2">
           <div>
             <p className="text-xl font-semibold text-green-700">🏠 Địa chỉ</p>
