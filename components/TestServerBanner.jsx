@@ -7,7 +7,8 @@ const sessionKey = "test-banner-dismissed";
 
 export default function TestServerBanner({ message }) {
   const env = process.env.NEXT_PUBLIC_DEPLOY_ENV || "";
-  const defaultMessage = message || "Bạn đang truy cập môi trường kiểm thử. Dữ liệu có thể không phải là bản chính thức.";
+  const defaultMessage = message ||
+    "Đây là trang web kiểm thử, thông tin không chính thức từ Giáo Xứ Hy Vọng.";
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -43,9 +44,8 @@ export default function TestServerBanner({ message }) {
       aria-label="Test server banner"
       className="fixed inset-x-0 top-0 z-50 bg-yellow-500 text-black shadow"
     >
-      <div className="max-w-7xl mx-auto my-2 flex">
+      <div className="max-w-2xl mx-auto my-3 flex">
         <div className="flex-1">
-          <strong className="inline-block mr-2">Môi trường Kiểm thử</strong>
           <span>{defaultMessage}</span>
         </div>
 

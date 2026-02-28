@@ -47,10 +47,10 @@ export default function ContactForm() {
       setStatus({ loading: false });
       setToast({
         type: 'success',
-        message: 'Gửi thành công. Cảm ơn bạn!',
+        message: 'Tính năng đang trong giai đoạn phát triển...',
       });
       setForm({ name: '', email: '', phone: '', message: '', hp: '' });
-    }, 1234)
+    }, 123)
 
     // try {
     //   const res = await fetch('/api/contact', {
