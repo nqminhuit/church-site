@@ -24,13 +24,13 @@ export default function RootLayout({ children }) {
 
         {/* Header */}
         <header className="bg-green-700 text-white shadow-md">
-          <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div className="text-xl font-bold">
+          <div className="max-w-6xl mx-auto py-1 flex justify-between items-center">
+            <div className="text-xl font-bold hover:scale-[1.2] transition-all duration-300">
               <Link href="/" className="text-xl font-bold no-underline hover:opacity-70">⛪ Giáo xứ Hy Vọng</Link>
             </div>
             {/* Desktop Nav */}
             <nav className="hidden md:flex space-x-4 text-sm relative">
-              <NavLinks items={navItems} className="text-sm" />
+              <NavLinks items={navItems} />
             </nav>
             {/* Mobile Nav */}
             <div className="md:hidden">

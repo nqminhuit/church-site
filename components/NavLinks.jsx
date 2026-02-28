@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-export default function NavLinks({ items, className = '', onClick, mobile = false }) {
+export default function NavLinks({ items, onClick, mobile = false }) {
   const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
 
@@ -21,18 +21,20 @@ export default function NavLinks({ items, className = '', onClick, mobile = fals
 
         if (it.children) {
           if (mobile) {
-            // On mobile: render children inline (no hover dropdown)
+            // Mobile: parent label + inline children (styled)
             return (
-              <div key={idx} className={`mt-2 ${className}`}>
-                <div className={`px-2 py-2 font-medium ${activeParent ? 'text-green-800 font-semibold' : 'text-gray-700'}`}>{it.label}</div>
-                <div className="pl-2">
+              <div key={idx} className='mt-2'>
+                <div className={`px-2 py-2 font-medium ${activeParent ? 'text-green-700 bg-green-50 rounded-md' : 'text-gray-700'}`}>
+                  {it.label}
+                </div>
+                <div className="pl-2 mt-1">
                   {it.children.map((c, i) => {
                     const active = mounted ? pathname === c.href : false;
                     return (
                       <Link
                         key={i}
                         href={c.href}
-                        className={`block px-4 py-3 text-gray-800 hover:bg-green-50 hover:text-green-800 rounded-md transition ${active ? 'font-semibold text-green-800' : ''}`}
+                        className={`block px-4 py-3 rounded-md transition-colors ${active ? 'font-semibold text-green-800 bg-green-100 border-l-4 border-green-700' : 'text-gray-800 hover:bg-green-50'}`}
                         onClick={onClick}
                       >
                         {c.label}
@@ -44,18 +46,24 @@ export default function NavLinks({ items, className = '', onClick, mobile = fals
             );
           }
 
-          // Desktop: dropdown on hover
+          // Desktop: parent button with nicer pill style, dropdown children in white card
           return (
-            <div key={idx} className={`relative group pb-2 ${className}`}>
-              <button className={`hover:underline cursor-pointer ${activeParent ? 'font-semibold text-green-100' : ''}`}>{it.label}</button>
-              <div className="absolute left-0 top-full hidden group-hover:block hover:block bg-white shadow-lg rounded-md border z-50 min-w-[200px]">
+            <div key={idx} className='relative group'>
+              <button
+                className={`px-3 py-3 rounded-md transition-colors cursor-pointer ${activeParent ? 'bg-white/90 text-green-900' : 'text-white hover:bg-white/20'}`}
+                aria-haspopup="true"
+              >
+                {it.label}
+              </button>
+
+              <div className="absolute left-0 top-full hidden group-hover:block hover:block bg-white shadow-lg rounded-md border z-50 min-w-[12rem]">
                 {it.children.map((c, i) => {
                   const active = mounted ? pathname === c.href : false;
                   return (
                     <Link
                       key={i}
                       href={c.href}
-                      className={`block px-4 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition ${active ? 'font-semibold text-green-800' : ''}`}
+                      className={`block px-3 py-3 text-gray-800 hover:bg-green-100 hover:text-green-800 rounded-md transition ${active ? 'font-semibold text-green-800' : ''}`}
                       onClick={onClick}
                     >
                       {c.label}
@@ -73,7 +81,7 @@ export default function NavLinks({ items, className = '', onClick, mobile = fals
             <Link
               key={idx}
               href={it.href}
-              className={`block px-4 py-3 text-gray-800 hover:bg-green-50 rounded-md transition ${active ? 'font-semibold text-green-800' : ''}`}
+              className={`block px-4 py-3 rounded-md transition-colors ${active ? 'font-semibold text-green-800 bg-green-100 border-l-4 border-green-700' : 'text-gray-800 hover:bg-green-50'}`}
               onClick={onClick}
             >
               {it.label}
@@ -81,11 +89,12 @@ export default function NavLinks({ items, className = '', onClick, mobile = fals
           );
         }
 
+        // Desktop single link style (no underline)
         return (
           <Link
             key={idx}
             href={it.href}
-            className={`hover:underline ${className} ${active ? 'font-semibold text-green-100' : ''}`}
+            className={`px-3 py-3 rounded-md transition-colors ${active ? 'bg-white/90 text-green-900' : 'text-white hover:bg-white/20'}`}
             onClick={onClick}
           >
             {it.label}
