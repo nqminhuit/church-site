@@ -169,7 +169,7 @@ export default function HomePage() {
           </>)
           : (<>
             <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
-              <q>Anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.</q>
+              <q>Đây là điều răn của Thầy: anh em hãy yêu thương nhau như Thầy đã yêu thương anh em.</q>
             </blockquote>
             <cite className="text-sm text-gray-600 mt-2 block">(Ga 15,12)</cite>
           </>)}
