@@ -25,7 +25,7 @@ This is the official website of Hy Vọng Parish, built with Next.js 15 and Reac
 
 3. Run the development server:
    ```bash
-   npm run dev
+   npm start
    ```
 
 Open [http://localhost:3000](http://localhost:3000) in the browser to view the website.
@@ -37,6 +37,8 @@ Open [http://localhost:3000](http://localhost:3000) in the browser to view the w
   - `layout.js`: Common layout
   - Subdirectories for each page (e.g., `lien-he/page.js`)
 - **components/**: Reusable components (e.g., `CalendarSection.js`)
+- **public/**: Static assets (images, icons)
+- **utils/**: Utility functions
 
 ## Adding and Updating Content
 
@@ -82,7 +84,6 @@ There will be another repository responsible for this content: https://github.co
 ## Deployment
 Automatic deployment when pushing changes to the main branch
 
-
 ### Manual Deployment Steps
 1. Build production:
  ```bash
@@ -94,41 +95,10 @@ Automatic deployment when pushing changes to the main branch
  (cd out && python -m http.server 8000)
  ```
 
-### Deploying to Test / Staging vs Production
-When you publish a public test server (so external testers can verify changes) show a prominent test-banner to avoid confusion with production. This project uses a client-side banner that is shown when the build-time environment variable NEXT_PUBLIC_DEPLOY_ENV is set to `test` or `staging`, or when the hostname contains `test`/`staging`.
-
-1) Set environment variable at build time
-- For test deployment (recommended):
-  - NEXT_PUBLIC_DEPLOY_ENV=test
-- For production deployment (recommended):
-  - NEXT_PUBLIC_DEPLOY_ENV=production
-
-How to set this:
-- Vercel / Netlify / other CI: add NEXT_PUBLIC_DEPLOY_ENV=test to the test site's environment variables.
-- Local build for testing:
-  - NEXT_PUBLIC_DEPLOY_ENV=test npm run build && npm run export
-
-2) What the banner does
-- The banner appears at the top of every page (global) and is dismissible for the browser session.
-- It is implemented in components/TestServerBanner.jsx and injected in app/layout.js.
-- The banner is visible if NEXT_PUBLIC_DEPLOY_ENV is not 'production' or if the site hostname contains 'test' or 'staging'.
-
-3) Recommended test deploy checklist
-- Build the site using NEXT_PUBLIC_DEPLOY_ENV=test so the banner appears for testers.
-- Use a test-specific domain, e.g., test-your-site.example.org or staging-your-site.example.org. The banner will detect the hostname as well if you cannot set the env var.
-- Use separate environment variables for credentials on the test server (do not reuse production keys). For example:
-  - CONTACT_EMAIL=test+notify@example.org
-  - SENDGRID_API_KEY=<test-sendgrid-key-or-empty>
-  - SMTP_HOST/SMTP_PORT/SMTP_USER/SMTP_PASS (test SMTP account if required)
-
-4) Rollback / promotion
-- When ready to promote to production, build with NEXT_PUBLIC_DEPLOY_ENV=production (or unset it) and deploy to the production host.
-- Ensure production environment variables (SENDGRID_API_KEY, CONTACT_EMAIL) are set and correct.
-
-5) Additional notes
-- The banner is session-dismissible using sessionStorage so testers can dismiss it for the current browser session.
-- If you prefer a non-dismissible banner (stronger visual cue), remove the dismiss logic in components/TestServerBanner.jsx.
-- If you need a forced interstitial (e.g., 'I understand this is test data' modal) I can add a small consent modal that blocks access until acknowledged.
+3. Build for staging / test environment (with test banner):
+ ```bash
+ npm run build-test
+ ```
 
 
 ## Contributing

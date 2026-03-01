@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
     "build": "next build",
     "build-test": "NEXT_PUBLIC_DEPLOY_ENV=test next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next dev --turbopack",
+    "lint": "eslint utils app components"
   },
   "dependencies": {
     "next": "^15.5.12",
