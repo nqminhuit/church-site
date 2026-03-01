@@ -1,8 +1,9 @@
 'use client'
 
 import CalendarSection from '@/components/CalendarSection';
+import GospelModal from '@/components/GospelModal';
 import ImageModal from '@/components/ImageModal';
-import { ASSETS_BASE, fetchAnnouncements, fetchPhotos, MEDIA_BASE } from '@/utils/fetchIndex';
+import { ASSETS_BASE, fetchAnnouncements, fetchGospelsCached, fetchPhotos, MEDIA_BASE } from '@/utils/fetchIndex';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -33,6 +34,10 @@ export default function HomePage() {
   const [images, setImages] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
   const [gospelOfTheDay, setGospelOfTheDay] = useState(null);
+  const [gospelModalOpen, setGospelModalOpen] = useState(false);
+  const [gospelModalLoading, setGospelModalLoading] = useState(false);
+  const [gospelModalContent, setGospelModalContent] = useState(null);
+  const [gospelModalError, setGospelModalError] = useState(null);
   const [liturgicalCalendar, setLiturgicalCalendar] = useState(null);
   const [vnLiturgicalCalendar, setVnLiturgicalCalendar] = useState(null);
   const [lectionary, setLectionary] = useState(null);
@@ -137,8 +142,29 @@ export default function HomePage() {
         </h2>
         {gospelOfTheDay
           ? (<>
-            <blockquote className="text-lg text-gray-800 italic font-medium mx-4">
-              <q>{gospelOfTheDay.quote}</q>
+            <blockquote className="text-lg text-gray-800 italic font-medium mx-4 hover:scale-107 transition-all duration-300">
+              <q className="cursor-pointer" onClick={async () => {
+                // open modal and fetch content
+                setGospelModalOpen(true);
+                setGospelModalLoading(true);
+                setGospelModalError(null);
+                setGospelModalContent(null);
+                try {
+                  const data = await fetchGospelsCached();
+                  // normalize citation: exact string as shown is used
+                  const key = (gospelOfTheDay.reference || '').trim();
+                  if (key && data[key]) {
+                    setGospelModalContent(data[key]);
+                  } else {
+                    setGospelModalError('Không tìm thấy đoạn Tin Mừng cho trích dẫn: ' + key);
+                  }
+                } catch (e) {
+                  console.error(e);
+                  setGospelModalError('Không thể tải nội dung Lời Chúa. Vui lòng thử lại sau.');
+                } finally {
+                  setGospelModalLoading(false);
+                }
+              }}>{gospelOfTheDay.quote}</q>
             </blockquote>
             <cite className="text-sm text-gray-600 mt-2 block">({gospelOfTheDay.reference})</cite>
             <p className="text-sm text-green-700 font-semibold mt-2">{gospelOfTheDay.sunday}</p>
@@ -149,6 +175,14 @@ export default function HomePage() {
             </blockquote>
             <cite className="text-sm text-gray-600 mt-2 block">(Ga 15,12)</cite>
           </>)}
+
+        <GospelModal
+          citation={gospelOfTheDay ? gospelOfTheDay.reference : null}
+          open={gospelModalOpen}
+          onClose={() => setGospelModalOpen(false)}
+          content={gospelModalContent}
+          loading={gospelModalLoading}
+          error={gospelModalError} />
       </section>
 
       {/* Grid: Left - Content, Right - Calendar */}
