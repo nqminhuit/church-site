@@ -234,7 +234,7 @@ export default function HomePage() {
         </div>
 
         {/* Right Column: Calendar */}
-        <div className="space-y-4">
+        <div className="space-y-4 order-first md:order-none md:col-span-1 max-w-4xl mx-auto md:mx-0">
           <CalendarSection date={date} onChange={setDate} />
           <p className="text-sm text-gray-600">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
         </div>

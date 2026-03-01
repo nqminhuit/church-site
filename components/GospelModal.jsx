@@ -70,7 +70,7 @@ export default function GospelModal({
 
           {!loading && !error && content && (
             <div className="prose prose-gray max-w-none whitespace-pre-line
-                            text-gray-800 leading-8">
+                            text-gray-800 leading-8 text-justify">
               {content}
             </div>
           )}
