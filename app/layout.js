@@ -4,6 +4,7 @@ import MobileNav from '@/components/MobileNav';
 import NavLinks from '@/components/NavLinks';
 import TestServerBanner from '@/components/TestServerBanner';
 import { navItems } from '@/components/nav-items';
+import { Analytics } from '@vercel/analytics/next';
 import Link from 'next/link';
 import './globals.css';
 
@@ -65,6 +66,7 @@ export default function RootLayout({ children }) {
           </div>
           <BackToTop />
         </footer>
+        <Analytics />
       </body>
     </html>
   );
