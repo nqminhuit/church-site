@@ -2,7 +2,7 @@
 
 import CalendarSection from '@/components/CalendarSection';
 import GospelModal from '@/components/GospelModal';
-import { fetchGospelsCached } from '@/utils/fetchIndex';
+import { fetchGospelsCached, fetchGospelToday } from '@/utils/fetchIndex';
 import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 
@@ -34,6 +34,7 @@ export default function HomePage() {
   const [liturgicalCalendar, setLiturgicalCalendar] = useState(null);
   const [vnLiturgicalCalendar, setVnLiturgicalCalendar] = useState(null);
   const [lectionary, setLectionary] = useState(null);
+  const [gospelToday, setGospelToday] = useState(null);
 
   const getSundayLabel = (dayInfo) => {
     if (dayInfo.name) {
@@ -49,6 +50,10 @@ export default function HomePage() {
     }
     return label;
   };
+
+  useEffect(() => {
+    fetchGospelToday().then(setGospelToday).catch(console.error);
+  }, []);
 
   useEffect(() => {
     const currentYear = date.getFullYear();
@@ -110,6 +115,14 @@ export default function HomePage() {
                 setGospelModalLoading(true);
                 setGospelModalError(null);
                 setGospelModalContent(null);
+
+                const selectedDate = date.toLocaleDateString('en-CA', { timeZone: 'Asia/Ho_Chi_Minh' });
+                if (gospelToday && gospelToday.date === selectedDate && gospelToday.verses) {
+                  setGospelModalContent(gospelToday.verses);
+                  setGospelModalLoading(false);
+                  return;
+                }
+
                 try {
                   const data = await fetchGospelsCached();
                   // normalize citation: exact string as shown is used

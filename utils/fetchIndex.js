@@ -2,6 +2,15 @@ const GOSPEL_URL = 'https://raw.githubusercontent.com/nqminhuit/liturgical-calen
 const GOSPEL_CACHE_KEY = 'gospel_json_cache_v1';
 let _gospelMemoryCache = null;
 
+// Generated daily by a scheduled GitHub Action from https://github.com/nqminhuit/daily-bible
+export async function fetchGospelToday() {
+  const res = await fetch(`/gospel-today.json?t=${Date.now()}`);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch gospel-today.json: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
+
 export async function fetchGospelsCached({ ttlMs = 180000 } = {}) {
   // Return memory cache if still present
   if (_gospelMemoryCache) {
