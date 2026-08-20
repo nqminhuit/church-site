@@ -1,10 +1,9 @@
 {
-  "name": "church-site",
+  "name": "gospel-of-the-day",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "build": "next build",
-    "build-test": "NEXT_PUBLIC_DEPLOY_ENV=test next build",
     "start": "next dev --turbopack",
     "lint": "eslint utils app components"
   },
@@ -13,11 +12,7 @@
     "next": "^15.5.12",
     "react": "^19.0.0",
     "react-calendar": "^6.0.0",
-    "react-dom": "^19.0.0",
-    "react-markdown": "^10.1.0",
-    "rehype-raw": "^7.0.0",
-    "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

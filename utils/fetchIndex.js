@@ -1,27 +1,6 @@
-const minioBase = 'https://s3-api.prud.uk/web/church/hyvong';
-export const PAGES_BASE = `${minioBase}/pages`;
-export const MEDIA_BASE = `${minioBase}/media`;
-export const ASSETS_BASE = `${MEDIA_BASE}/assets`;
-
 const GOSPEL_URL = 'https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/gospel.json';
 const GOSPEL_CACHE_KEY = 'gospel_json_cache_v1';
 let _gospelMemoryCache = null;
-
-export async function fetchAnnouncements() {
-  const res = await fetch(`${minioBase}/anns.json?t=${Date.now()}`);
-  if (!res.ok) {
-    throw new Error('Failed to fetch anns.json');
-  }
-  return res.json();
-}
-
-export async function fetchPhotos() {
-  const res = await fetch(`${minioBase}/photos.json?t=${Date.now()}`);
-  if (!res.ok) {
-    throw new Error('Failed to fetch photos.json');
-  }
-  return res.json();
-}
 
 export async function fetchGospelsCached({ ttlMs = 180000 } = {}) {
   // Return memory cache if still present

@@ -1,13 +1,11 @@
-# Hy Vọng Parish - Website
+# Lời Chúa hằng ngày (Daily Gospel)
 
-This is the official website of Hy Vọng Parish, built with Next.js 15 and React 19. The website provides information about the parish, mass schedules, announcements, activities, and community images.
+A small Next.js 15 / React 19 site that displays the daily Gospel reading (Tin Mừng), with a calendar to browse readings for other dates.
 
 ## Purpose
 
-- Introduce Hy Vọng Parish
-- Announce liturgical calendars, events, and pastoral activities
-- Share images and community news
-- Contact and communication information
+- Show the Gospel of the day, taken from the liturgical calendar
+- Let visitors pick another date on the calendar to read that day's Gospel
 
 ## Installation and Running
 
@@ -28,58 +26,23 @@ This is the official website of Hy Vọng Parish, built with Next.js 15 and Reac
    npm start
    ```
 
-Open [http://localhost:3000](http://localhost:3000) in the browser to view the website.
+Open [http://localhost:3000](http://localhost:3000) in the browser to view the site.
 
 ## Project Structure
 
 - **app/**: Next.js pages (app router)
-  - `page.js`: Home page
+  - `page.js`: Home page (Gospel of the day + calendar)
   - `layout.js`: Common layout
-  - Subdirectories for each page (e.g., `lien-he/page.js`)
-- **components/**: Reusable components (e.g., `CalendarSection.js`)
-- **public/**: Static assets (images, icons)
-- **utils/**: Utility functions
+- **components/**: Reusable components (`GospelModal.jsx`, `CalendarSection.js`, `ErrorBoundary.js`)
+- **public/**: Static assets (icons)
+- **utils/**: Utility functions (fetching + caching Gospel data)
 
-## Adding and Updating Content
+## Data source
 
-- **Update announcements**:
-  1. use a markdown editor e.g., https://stackedit.io (online) and write the new announcement there
-  2. review content, then copy it to a file temp: e.g., `/tmp/ann.md`
-  3. encode the file into 1 single line of text with this command: `base64 -w0 /tmp/ann.md`
-  4. go to github action 'Create Announcement' then trigger with inputs:
-	  1. Content: the output of step #3
-	  2. Slug: filename also will be the slug in url path
-	  3. Summary: short texts to let people know about the content
-	  4. Thumbnail: for the /thong-bao page
-
-- **Galleries**:
-Upload to `s3://web/church/hyvong/media/galleries/` then update in `s3://web/church/hyvong/photos.json`
- ``` bash
- aws s3 cp /path/to/photo.jpg s3://web/church/hyvong/media/galleries/
-
- aws s3 cp s3://web/church/hyvong/photos.json - | jq > /tmp/photos.json
- # edit /tmp/photos.json, then:
- aws s3 cp /tmp/photos.json s3://web/church/hyvong/
- ```
-
-- **Image assets**:
-Upload to `s3://web/church/hyvong/media/assets/`
- ``` bash
- aws s3 cp /path/to/asset.jpg s3://web/church/hyvong/media/assets/
- ```
-
-
-- **Update Main banner**:
- ``` bash
- aws s3 cp /path/to/file.jpg s3://web/church/hyvong/media/main_banner.jpg
- ```
-
-- **Gospel of the day**:
-There will be another repository responsible for this content: https://github.com/nqminhuit/liturgical-calendar
-  - The calendar must be committed to `resources/liturgical-calendar-<year>.json` of that repository
-  - The `resources/lectionary.json` is one-time-work and will be reused every year.
-  - `resources/vietnam-liturgical-calendar-<year>.json`: this file will override some Masses specific only in Vietnam.
-
+Liturgical calendar and Gospel text are fetched from https://github.com/nqminhuit/liturgical-calendar:
+- `resources/liturgical-calendar-<year>.json` and `resources/vietnam-liturgical-calendar-<year>.json`
+- `resources/lectionary.json` (maps lectionary keys to Gospel references, one-time work reused every year)
+- `resources/gospel.json` (full Gospel text keyed by reference)
 
 ## Deployment
 Automatic deployment when pushing changes to the main branch
@@ -94,12 +57,6 @@ Automatic deployment when pushing changes to the main branch
  ```bash
  (cd out && python -m http.server 8000)
  ```
-
-3. Build for staging / test environment (with test banner):
- ```bash
- npm run build-test
- ```
-
 
 ## Contributing
 

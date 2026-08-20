@@ -2,10 +2,7 @@
 
 import CalendarSection from '@/components/CalendarSection';
 import GospelModal from '@/components/GospelModal';
-import ImageModal from '@/components/ImageModal';
-import { ASSETS_BASE, fetchAnnouncements, fetchGospelsCached, fetchPhotos, MEDIA_BASE } from '@/utils/fetchIndex';
-import Image from 'next/image';
-import Link from 'next/link';
+import { fetchGospelsCached } from '@/utils/fetchIndex';
 import { useEffect, useState } from 'react';
 import 'react-calendar/dist/Calendar.css';
 
@@ -28,11 +25,7 @@ const weekdays = {
 };
 
 export default function HomePage() {
-  const topItemsCount = 3;
   const [date, setDate] = useState(new Date());
-  const [announcements, setAnnouncements] = useState([]);
-  const [images, setImages] = useState([]);
-  const [selectedImage, setSelectedImage] = useState(null);
   const [gospelOfTheDay, setGospelOfTheDay] = useState(null);
   const [gospelModalOpen, setGospelModalOpen] = useState(false);
   const [gospelModalLoading, setGospelModalLoading] = useState(false);
@@ -58,15 +51,6 @@ export default function HomePage() {
   };
 
   useEffect(() => {
-    fetchAnnouncements()
-      .then(anns => setAnnouncements(anns ? anns.slice(0, topItemsCount) : []))
-      .catch(console.error);
-    fetchPhotos()
-      .then(imgs => setImages(imgs ? imgs.slice(0, topItemsCount) : []))
-      .catch(console.error);
-
-    // Fetch liturgical calendar and lectionary
-    // const currentYear = new Date().getFullYear();
     const currentYear = date.getFullYear();
     Promise.all([
       fetch(`https://raw.githubusercontent.com/nqminhuit/liturgical-calendar/refs/heads/master/resources/liturgical-calendar-${currentYear}-vietnam.json`),
@@ -106,29 +90,8 @@ export default function HomePage() {
   }, [vnLiturgicalCalendar, liturgicalCalendar, lectionary, date]);
 
   return (
-    <div className="space-y-12">
-      {/* Banner on top across full width */}
-      <section className="text-center py-6 bg-gradient-to-b from-green-100 to-green-200 rounded-lg overflow-hidden animate-[fadeIn_1s_ease-out_forwards]">
-        <Image
-          src={`${ASSETS_BASE}/main_banner.jpg`}
-          alt="Giáo xứ Hy Vọng community gathering"
-          width={500}
-          height={0}
-          className="rounded-lg shadow-lg mb-6 object-cover block mx-auto"
-          priority
-        />
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-green-800">Chào mừng đến với Giáo xứ Hy Vọng</h1>
-          <blockquote className="mt-4 text-lg text-gray-700 italic">
-            <q>Xin Thiên Chúa là nguồn hy vọng, ban cho anh em được chan chứa niềm vui và bình an nhờ đức tin, để nhờ quyền năng của Thánh Thần, anh em được tràn trề hy vọng.</q>
-            <cite className="text-sm text-gray-600 mx-3">(Rm 15,13)</cite>
-          </blockquote>
-          <Link href="/gio-le" className="mt-6 inline-block bg-green-700 text-white px-6 py-3 rounded-lg shadow-md hover:bg-green-800 transition">Tham Dự Thánh Lễ</Link>
-        </div>
-      </section>
-
-      {/* Word of God Section - Full Width */}
-      <section className="max-w-4xl mx-auto text-center py-6 bg-gradient-to-r from-green-50 to-green-200 border border-green-300 rounded-lg shadow-lg my-8 animate-[fadeIn_1s_ease-out_0.3s_forwards] min-h-[14em]">
+    <div className="space-y-8">
+      <section className="max-w-4xl mx-auto text-center py-6 bg-gradient-to-r from-green-50 to-green-200 border border-green-300 rounded-lg shadow-lg animate-[fadeIn_1s_ease-out_forwards] min-h-[14em]">
         <h2 className="text-2xl font-bold text-green-900 mb-4">
           {
             gospelOfTheDay
@@ -183,64 +146,10 @@ export default function HomePage() {
           error={gospelModalError} />
       </section>
 
-      {/* Grid: Left - Content, Right - Calendar */}
-      <div className="grid md:grid-cols-3 gap-8">
-        {/* Left Column: Main content */}
-        <div className="md:col-span-2 space-y-10">
-          <section>
-            <h2 className="text-xl font-semibold text-green-700 mb-2">🌟 Giới thiệu</h2>
-            <p className="text-gray-700 leading-relaxed">Giáo xứ Hy Vọng được thành lập và phát triển từ năm 1957 tại Giáo Hạt Tân Sơn Nhì, là nơi quy tụ cộng đoàn tín hữu cùng nhau cầu nguyện, chia sẻ đức tin và phục vụ tha nhân. Chúng tôi luôn chào đón mọi người đến tham dự Thánh lễ và các hoạt động mục vụ.</p>
-          </section>
-
-          <section className="bg-gradient-to-r from-green-50 to-green-100 border-l-4 border-green-600 p-6 rounded-lg shadow-sm">
-            <h2 className="text-xl font-bold text-green-800 mb-3 flex items-center">
-              <span className="mr-2">📢</span> Thông báo
-            </h2>
-            <ul className="space-y-2 text-gray-700">
-              {announcements.map((item, idx) => (
-                <li key={idx} className="flex items-start">
-                  <span className="text-green-600 mr-2">🔔</span>
-                  <span><strong>{new Date(item.date).toLocaleDateString('vi-VN')}:</strong> {item.summary}</span>
-                </li>
-              ))}
-            </ul>
-            <Link href="/thong-bao" className="inline-block mt-4 text-green-700 underline font-medium hover:text-green-800">Xem tất cả &raquo;</Link>
-          </section>
-          <section className="mt-12">
-            <h2 className="text-xl font-bold text-green-800 mb-4">📸 Hình ảnh mới</h2>
-            <div className="flex flex-wrap gap-4">
-              {images.map((item, idx) => (
-                <div key={idx} className="overflow-hidden rounded-lg hover:shadow-lg hover:scale-107 transition-all duration-300 cursor-pointer" onClick={() => setSelectedImage(item)}>
-                  <Image
-                    src={`${MEDIA_BASE}/${item.src}`}
-                    alt={item.alt}
-                    width={230}
-                    height={0}
-                    priority={idx === 0}
-                  />
-                </div>
-              ))}
-            </div>
-            <Link href="/hinh-anh" className="block mt-2 text-green-700 underline text-sm">Xem tất cả »</Link>
-          </section>
-          <section>
-            <h2 className="text-xl font-semibold text-green-700 mb-2">⛪ Giờ lễ trong tuần</h2>
-            <ul className="list-disc list-inside text-gray-700 space-y-1">
-              <li>Chúa Nhật: 05:30, 07:30, 17:00, 18:30</li>
-              <li>Thứ Hai - Thứ Bảy: 05:00, 18:00</li>
-            </ul>
-            <Link href="/gio-le" className="text-green-800 underline text-sm mt-2 inline-block">Xem chi tiết &raquo;</Link>
-          </section>
-        </div>
-
-        {/* Right Column: Calendar */}
-        <div className="space-y-4 order-first md:order-none md:col-span-1 max-w-4xl mx-auto md:mx-0">
-          <CalendarSection date={date} onChange={setDate} />
-          <p className="text-sm text-gray-600">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
-        </div>
+      <div className="max-w-sm mx-auto space-y-4">
+        <CalendarSection date={date} onChange={setDate} />
+        <p className="text-sm text-gray-600 text-center">Ngày được chọn: <strong>{date.toLocaleDateString('vi-VN')}</strong></p>
       </div>
-
-      <ImageModal selectedImage={selectedImage} onClose={() => setSelectedImage(null)} />
     </div>
   );
 }
